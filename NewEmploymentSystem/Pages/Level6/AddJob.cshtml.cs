@@ -31,7 +31,11 @@ namespace NewEmploymentSystem.Pages.Level6
                 return RedirectToPage("../Index");
             }
 
-            ViewData["JobId"] = new SelectList(_db.TblJobs.Where(a => a.IsActive == true), "Id", "JobTitle");
+            ViewData["JobId"] = new SelectList(_db.TblJobs
+                                                .Where(a => a.IsActive == true)
+                                                .Where(a => a.StartDate < DateTime.Now)
+                                                .Where(a => a.EndDate > DateTime.Now)
+                                                , "Id", "JobTitle");
             return Page();
         }
 

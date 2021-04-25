@@ -46,6 +46,7 @@ namespace NewEmploymentSystem.Models
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer("server=.;database=ShortLinkDB;User Id=sa;Password=S33@||;");
+                //optionsBuilder.UseSqlServer("Server=.;Database=EmployDB;Trusted_Connection=True;");
             }
         }
 
@@ -197,7 +198,11 @@ namespace NewEmploymentSystem.Models
             {
                 entity.ToTable("Tbl_Jobs");
 
+                entity.Property(e => e.EndDate).HasColumnType("datetime");
+
                 entity.Property(e => e.JobTitle).HasMaxLength(100);
+
+                entity.Property(e => e.StartDate).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<TblJobTamin>(entity =>

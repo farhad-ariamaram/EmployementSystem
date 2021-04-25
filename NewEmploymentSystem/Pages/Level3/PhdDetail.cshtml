@@ -1,0 +1,120 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level3.PhdDetailModel
+@{
+    ViewData["Title"] = "مرحله ثبت مشخصات تحصیلی";
+}
+
+    <form name="myForm" onsubmit="return validateForm()" class="contact3-form validate-form" method="post">
+        <span class="contact3-form-title">
+            <i class="fa fa-2x fa-graduation-cap"></i>
+            <br />
+            مرحله ثبت مشخصات تحصیلی
+        </span>
+
+        <div class="wrap-input3 input3-select">
+            <div>
+                <span class="placeholderEx"> رشته تحصیلی خود در مقطع دکتری را انتخاب کنید</span>
+                <select asp-for="tblCustomerDegree.EducationId" asp-items="ViewBag.EducationId" class="selection-2"></select>
+            </div>
+        </div>
+
+        <div class="wrap-input3">
+            <span class="placeholderEx">تاریخ شروع</span>
+            <span style="display:none" class="field-validation-error" id="pcal1error">این فیلد اجباری است</span>
+            <input type="text" name="StartDate" class="pdate" id="pcal1" readonly>
+        </div>
+
+        <div class="wrap-input3">
+            <span class="placeholderEx">تاریخ پایان</span>
+            <span style="display:none" class="field-validation-error" id="pcal2error">این فیلد اجباری است</span>
+            <input type="text" name="EndDate" class="pdate" id="pcal2" readonly>
+        </div>
+
+        <div class="wrap-input3">
+            <span class="placeholderEx">شماره مدرک</span>
+            <span asp-validation-for="tblCustomerDegree.FldExportNo"></span>
+            <input asp-for="tblCustomerDegree.FldExportNo" class="input3">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3">
+            <span class="placeholderEx">تاریخ اخذ مدرک</span>
+            <span style="display:none" class="field-validation-error" id="pcal3error">این فیلد اجباری است</span>
+            <input type="text" name="ExportDate" class="pdate" id="pcal3" readonly>
+        </div>
+
+        <div class="wrap-input3">
+            <span class="placeholderEx">معدل</span>
+            <span asp-validation-for="tblCustomerDegree.FldPoint"></span>
+            <input asp-for="tblCustomerDegree.FldPoint" class="input3">
+            <span class="focus-input3"></span>
+        </div>
+        <span class="description">در صورتی که هنوز فارق التحصیل نشده اید، معدل ترم های گذرانده خود را وارد کنید</span>
+
+        <div class="textwhite"><input id="moredescheckbox" type="checkbox" />توضیحات بیشتر</div><br />
+        <div id="moredescription" class="wrap-input3">
+            <input asp-for="tblCustomerDegree.FldDes" class="input3">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="container-contact3-form-btn">
+            <input type="submit" class="contact3-form-btn" value="ثبت" />
+        </div>
+    </form>
+
+<script>
+    document.forms["myForm"]["StartDate"].value = localStorage.getItem('sd4');
+    document.forms["myForm"]["EndDate"].value = localStorage.getItem('ed4');
+    document.forms["myForm"]["ExportDate"].value = localStorage.getItem('exd4');
+
+    function validateForm() {
+        localStorage.setItem("sd4", document.forms["myForm"]["StartDate"].value);
+        localStorage.setItem("ed4", document.forms["myForm"]["EndDate"].value);
+        localStorage.setItem("exd4", document.forms["myForm"]["ExportDate"].value);
+
+        var sd = document.forms["myForm"]["StartDate"].value;
+        var ed = document.forms["myForm"]["EndDate"].value;
+        var exd = document.forms["myForm"]["ExportDate"].value;
+        if (sd == "") {
+            $("#pcal1error").css("display", "block");
+            return false;
+        } else {
+            $("#pcal1error").css("display", "none");
+        }
+        if (ed == "") {
+            $("#pcal2error").css("display", "block");
+            return false;
+        } else {
+            $("#pcal2error").css("display", "none");
+        }
+        if (exd == "") {
+            $("#pcal3error").css("display", "block");
+            return false;
+        } else {
+            $("#pcal3error").css("display", "none");
+        }
+    }
+
+    function fixNumber(str) {
+        var persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g];
+        var arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
+        if (typeof str === 'string') {
+            for (var i = 0; i < 10; i++) {
+                str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+            }
+        }
+        return str;
+    }
+    function Load() {
+        $("#tblCustomerDegree_FldPoint").keyup(function () {
+            $("#tblCustomerDegree_FldPoint").val(fixNumber($("#tblCustomerDegree_FldPoint").val()));
+        });
+        $(".pcalBtn").click(function () {
+            $("#pcal1error").hide();
+            $("#pcal2error").hide();
+            $("#pcal3error").hide();
+        });
+    }
+
+</script>
+

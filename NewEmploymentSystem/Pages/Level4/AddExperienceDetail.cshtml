@@ -1,0 +1,228 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level4.AddExperienceDetailModel
+@{
+    ViewData["Title"] = "مرحله ثبت سوابق شغلی";
+}
+
+<form name="myForm" method="post" class="contact3-form">
+    <span class="contact3-form-title">
+        <img height=80 width=80 src="/images/icons/workexperience.png">
+        <br />
+        مرحله ثبت سوابق شغلی
+    </span>
+
+    <section id="section1">
+        <div asp-validation-summary="All">
+            <span class="errordescription">لطفا موارد زیر را به صورت صحیح وارد کنید:</span>
+        </div>
+        <br />
+        <div class="wrap-input3 input3-select">
+            <div>
+                <span class="placeholderEx">عنوان شغل خود را انتخاب کنید</span>
+                <select asp-for="tblWorkExperience.FldTaminJobId" asp-items="ViewBag.JobId" class="selection-2"></select>
+            </div>
+        </div>
+
+        <div class="wrap-input3 ">
+            <span asp-validation-for="tblWorkExperience.FldCompanyName"></span>
+            <input asp-for="tblWorkExperience.FldCompanyName" class="input3" placeholder="نام شرکت">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3 ">
+            <span asp-validation-for="tblWorkExperience.FldUnitName"></span>
+            <input asp-for="tblWorkExperience.FldUnitName" class="input3" placeholder="نام واحد">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3 ">
+            <span class="placeholderEx">تاریخ شروع فعالیت</span>
+            <span style="display:none" class="field-validation-error" id="pcal1error">این فیلد اجباری است</span>
+            <input type="text" name="StartDate" class="pdate" id="pcal1" readonly>
+        </div>
+
+        <div class="wrap-input3 ">
+            <span class="placeholderEx">تاریخ پایان فعالیت</span>
+            <span style="display:none" class="field-validation-error" id="pcal2error">این فیلد اجباری است</span>
+            <input type="text" name="EndDate" class="pdate" id="pcal2" readonly>
+        </div>
+
+        <div class="container-contact3-form-btn">
+            <button class="contact3-form-btn" onclick="s1tos2(event);">
+                ثبت و ادامه
+            </button>
+        </div>
+
+    </section>
+    <section id="section2">
+
+        <div class="wrap-input3 ">
+            <span asp-validation-for="tblWorkExperience.FldContactNumberOfCompany"></span>
+            <input asp-for="tblWorkExperience.FldContactNumberOfCompany" class="input3" placeholder="شماره تلفن شرکت">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3 ">
+            <span asp-validation-for="tblWorkExperience.FldContactInnerNumberOfCompany"></span>
+            <input asp-for="tblWorkExperience.FldContactInnerNumberOfCompany" class="input3" placeholder="شماره تلفن داخلی شرکت">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="container-contact3-form-btn">
+            <button class="contact3-form-btn" onclick="s2tos3(event);">
+                ثبت و ادامه
+            </button>
+        </div>
+
+    </section>
+    <section id="section3">
+        <div class="wrap-input3 ">
+            <span asp-validation-for="tblWorkExperience.FldRelatedPeople"></span>
+            <textarea asp-for="tblWorkExperience.FldRelatedPeople" class="input3" placeholder="نام نفر مرتبط(نام مدیر مافوق شما)"></textarea>
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="container-contact3-form-btn">
+            <button class="contact3-form-btn" onclick="s3tos4(event);">
+                ثبت و ادامه
+            </button>
+        </div>
+
+    </section>
+    <section id="section4">
+        <div class="wrap-input3 ">
+            <span asp-validation-for="tblWorkExperience.FldEarlySalary"></span>
+            <input asp-for="tblWorkExperience.FldEarlySalary" class="input3" placeholder="(ریال)مقدار اولین حقوق دریافتی">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3 ">
+            <span asp-validation-for="tblWorkExperience.FldLateSalary"></span>
+            <input asp-for="tblWorkExperience.FldLateSalary" class="input3" placeholder="مقدار آخرین حقوق دریافتی(ریال)">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3 ">
+            <span asp-validation-for="tblWorkExperience.FldAmountOfDailyInsurance"></span>
+            <input asp-for="tblWorkExperience.FldAmountOfDailyInsurance" class="input3" placeholder="تعداد روز بیمه شده(در صورتی که بیمه بوده‌اید)">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="container-contact3-form-btn">
+            <button class="contact3-form-btn" onclick="s4tos5(event);">
+                ثبت و ادامه
+            </button>
+        </div>
+
+    </section>
+
+    <section id="section5">
+        <div class="wrap-input3 ">
+            <span asp-validation-for="tblWorkExperience.FldWorkTime"></span>
+            <input asp-for="tblWorkExperience.FldWorkTime" class="input3" placeholder="ساعت کاری">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3 ">
+            <span asp-validation-for="tblWorkExperience.FldWorkDay"></span>
+            <input asp-for="tblWorkExperience.FldWorkDay" class="input3" placeholder="تعداد روز های کارکرد">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="container-contact3-form-btn">
+            <button class="contact3-form-btn" onclick="s5tos6(event);">
+                ثبت و ادامه
+            </button>
+        </div>
+
+    </section>
+
+    <section id="section6">
+        <div class="textwhite"><input id="moredescheckbox" type="checkbox" />توضیحات بیشتر</div><br />
+        <div id="moredescription" class="wrap-input3 ">
+            <span asp-validation-for="tblWorkExperience.FldDescription"></span>
+            <textarea class="input3" asp-for="tblWorkExperience.FldDescription" placeholder="توضیخات"></textarea>
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="container-contact3-form-btn">
+            <button type="submit" class="contact3-form-btn">
+                ثبت
+            </button>
+        </div>
+    </section>
+
+</form>
+
+<script>
+    document.forms["myForm"]["StartDate"].value = localStorage.getItem('sd6');
+    document.forms["myForm"]["EndDate"].value = localStorage.getItem('ed6');
+
+    function s1tos2(e) {
+        e.preventDefault();
+
+        localStorage.setItem("sd6", document.forms["myForm"]["StartDate"].value);
+        localStorage.setItem("ed6", document.forms["myForm"]["EndDate"].value);
+
+        var sd = document.forms["myForm"]["StartDate"].value;
+        var ed = document.forms["myForm"]["EndDate"].value;
+        if (sd == "") {
+            $("#pcal1error").css("display", "block");
+        } else {
+            $("#pcal1error").css("display", "none");
+        }
+        if (ed == "") {
+            $("#pcal2error").css("display", "block");
+        } else {
+            $("#pcal2error").css("display", "none");
+        }
+        if (sd == "") {
+
+        } else {
+            if (ed == "") {
+
+            } else {
+                $('#section1').hide();
+                $('#section2').show();
+            }
+        }
+    }
+
+    function fixNumber(str) {
+        var persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g];
+        var arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
+        if (typeof str === 'string') {
+            for (var i = 0; i < 10; i++) {
+                str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+            }
+        }
+        return str;
+    }
+    function Load() {
+        $("#tblWorkExperience_FldContactNumberOfCompany").keyup(function () {
+            $("#tblWorkExperience_FldContactNumberOfCompany").val(fixNumber($("#tblWorkExperience_FldContactNumberOfCompany").val()));
+        });
+        $("#tblWorkExperience_FldContactInnerNumberOfCompany").keyup(function () {
+            $("#tblWorkExperience_FldContactInnerNumberOfCompany").val(fixNumber($("#tblWorkExperience_FldContactInnerNumberOfCompany").val()));
+        });
+        $("#tblWorkExperience_FldEarlySalary").keyup(function () {
+            $("#tblWorkExperience_FldEarlySalary").val(fixNumber($("#tblWorkExperience_FldEarlySalary").val()));
+        });
+        $("#tblWorkExperience_FldLateSalary").keyup(function () {
+            $("#tblWorkExperience_FldLateSalary").val(fixNumber($("#tblWorkExperience_FldLateSalary").val()));
+        });
+        $("#tblWorkExperience_FldAmountOfDailyInsurance").keyup(function () {
+            $("#tblWorkExperience_FldAmountOfDailyInsurance").val(fixNumber($("#tblWorkExperience_FldAmountOfDailyInsurance").val()));
+        });
+        $("#tblWorkExperience_FldWorkTime").keyup(function () {
+            $("#tblWorkExperience_FldWorkTime").val(fixNumber($("#tblWorkExperience_FldWorkTime").val()));
+        });
+        $("#tblWorkExperience_FldWorkDay").keyup(function () {
+            $("#tblWorkExperience_FldWorkDay").val(fixNumber($("#tblWorkExperience_FldWorkDay").val()));
+        });
+        $(".pcalBtn").click(function () {
+            $("#pcal1error").hide();
+            $("#pcal2error").hide();
+        });
+    }
+</script>

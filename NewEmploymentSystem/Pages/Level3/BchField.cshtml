@@ -1,0 +1,40 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level3.BchFieldModel
+@{
+    ViewData["Title"] = "مرحله ثبت مشخصات تحصیلی";
+}
+
+
+    <form onsubmit="return validateForm()" name="myForm" class="contact3-form validate-form" method="post">
+        <span class="contact3-form-title">
+            <i class="fa fa-2x fa-graduation-cap"></i>
+            <br />
+            مرحله ثبت مشخصات تحصیلی
+        </span>
+
+        <div class="wrap-input3">
+            <span style="display:none" class="field-validation-error" id="pcal1error"> این فیلد اجباری است</span>
+            <span style="display:none" class="field-validation-error" id="pcal2error">فقط از حروف فارسی استفاده کنید</span>
+            <span class="placeholderEx">نام رشته تحصیلی خود در مقطع کارشناسی را وارد کنید</span>
+            <input class="input3 justPersian" type="text" name="KarshenasiReshteh" placeholder="رشته تحصیلی مقطع کارشناسی(فقط حروف فارسی)">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="container-contact3-form-btn">
+            <input type="submit" class="contact3-form-btn" value="ثبت" />
+        </div>
+    </form>
+
+<script>
+    function validateForm() {
+        var text = document.forms["myForm"]["KarshenasiReshteh"].value;
+        if (text == "" || text.length < 2) {
+            $("#pcal1error").css("display", "block");
+            return false;
+        }
+        if (!persianRex.text.test(text)) {
+            $("#pcal2error").css("display", "block");
+            return false;
+        }
+    }
+</script>

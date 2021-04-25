@@ -1,0 +1,41 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level5.SkillFieldModel
+@{
+    ViewData["Title"] = "مرحله ثبت مهارت ها";
+}
+
+<form onsubmit="return validateForm()" name="myForm" class="contact3-form" method="post">
+    <span class="contact3-form-title">
+        <i class="fa fa-2x fa fa-cogs"></i>
+        <br />
+        مرحله ثبت مهارت ها
+    </span>
+
+    <div class="wrap-input3">
+        <span style="display:none" class="field-validation-error" id="pcal1error">این فیلد اجباری است</span>
+        <span style="display:none" class="field-validation-error" id="pcal2error">فقط از حروف فارسی استفاده کنید</span>
+        <input class="input3 justPersian" type="text" name="SkillTitle" placeholder="عنوان مهارت خود را وارد کنید(فقط حروف فارسی)">
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="container-contact3-form-btn">
+        <button type="submit" class="contact3-form-btn">
+            ثبت
+        </button>
+    </div>
+
+</form>
+
+<script>
+    function validateForm() {
+        var text = document.forms["myForm"]["SkillTitleTitle"].value;
+        if (text == "" || text.length < 2) {
+            $("#pcal1error").css("display", "block");
+            return false;
+        }
+        if (!persianRex.text.test(text)) {
+            $("#pcal2error").css("display", "block");
+            return false;
+        }
+    }
+</script>

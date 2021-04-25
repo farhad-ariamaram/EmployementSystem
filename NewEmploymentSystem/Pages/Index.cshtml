@@ -1,0 +1,37 @@
+﻿@page "{id?}"
+@model NewEmploymentSystem.Pages.IndexModel
+@{
+    ViewData["Title"] = " ورود به سایت";
+}
+
+<script>
+    localStorage.clear();
+</script>
+
+<form class="contact3-form" method="post">
+    <span class="contact3-form-title">
+        ورود به سایت
+    </span>
+    <div class="alert alert-warning">در صورتی که رمز خود را تغییر نداده اید، از شماره تماس خود به عنوان نام کاربری و از شماره ملی خود به عنوان پسورد استفاده کنید</div>
+
+
+    @Html.ValidationMessage("WrongUP")
+
+    <div class="wrap-input3">
+        <span asp-validation-for="login.username"></span>
+        <input class="input3" asp-for="login.username" placeholder="نام کاربری">
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="wrap-input3">
+        <span asp-validation-for="login.password"></span>
+        <input class="input3" type="password" asp-for="login.password" placeholder="کلمه عبور">
+        <span class="focus-input3"></span>
+    </div>
+
+    <br />
+
+    <div class="container-contact3-form-btn">
+        <input type="submit" class="contact3-form-btn" value="ورود" />
+    </div>
+</form>

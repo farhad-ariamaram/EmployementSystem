@@ -1,0 +1,51 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level4.AddWorkLeaveReasonPercentModel
+@{
+    ViewData["Title"] = "مرحله ثبت سوابق شغلی";
+}
+
+<form class="contact3-form validate-form" method="post">
+    <span class="contact3-form-title">
+        <img height=80 width=80 src="/images/icons/workexperience.png">
+        <br />
+        مرحله ثبت سوابق شغلی
+    </span>
+
+    <div class="wrap-input3 input3-select">
+        <div>
+            <span class="placeholderEx">علت ترک کار</span>
+            <select asp-for="tblWorkExperienceLeaveJobDtl.FldLeaveJobId" asp-items="ViewBag.LeaveJobId" class="selection-2"></select>
+        </div>
+    </div>
+
+    <div class="wrap-input3">
+        <span asp-validation-for="tblWorkExperienceLeaveJobDtl.FldLeaveJobPercent"></span>
+        <input asp-for="tblWorkExperienceLeaveJobDtl.FldLeaveJobPercent" value="@ViewData["percent"]" class="input3" placeholder="تاثیر این علت در ترک کار به درصد">
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="container-contact3-form-btn">
+        <button type="submit" class="contact3-form-btn">
+            ثبت
+        </button>
+    </div>
+
+</form>
+
+<script>
+    function fixNumber(str) {
+        var persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g];
+        var arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
+        if (typeof str === 'string') {
+            for (var i = 0; i < 10; i++) {
+                str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+            }
+        }
+        return str;
+    }
+    function Load() {
+        $("#tblWorkExperienceLeaveJobDtl_FldLeaveJobPercent").keyup(function () {
+            $("#tblWorkExperienceLeaveJobDtl_FldLeaveJobPercent").val(fixNumber($("#tblWorkExperienceLeaveJobDtl_FldLeaveJobPercent").val()));
+        });
+    }
+</script>

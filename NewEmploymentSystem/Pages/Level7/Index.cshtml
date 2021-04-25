@@ -1,0 +1,24 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level7.IndexModel
+@{
+    ViewData["Title"] = "وضعیت نظام وظیفه";
+}
+
+<partial name="_Steps" model="@ViewData["Level"]" />
+
+<form onsubmit="return validateForm()" name="myForm" class="contact3-form validate-form" method="post">
+    <span class="contact3-form-title">
+        <img height=80 width=80 src="/images/icons/soldier.png">
+        <br />
+        وضعیت نظام وظیفه
+    </span>
+
+    <div class="wrap-input3">
+        <span class="placeholderEx">وضعیت خدمت خود را انتخاب کنید</span>
+        <select asp-for="military.MilitaryId" asp-items="ViewBag.MilitaryId" class="selection-2"></select>
+    </div>
+
+    <div class="container-contact3-form-btn">
+        <input type="submit" class="contact3-form-btn" value="ثبت" />
+    </div>
+</form>

@@ -1,0 +1,30 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level3.DiplomaFieldModel
+@{
+    ViewData["Title"] = "مرحله ثبت مشخصات تحصیلی";
+}
+
+
+    <form method="post" class="contact3-form validate-form">
+        <span class="contact3-form-title">
+            <i class="fa fa-2x fa-graduation-cap"></i>
+            <br />
+            مرحله ثبت مشخصات تحصیلی
+        </span>
+
+        <div class="wrap-input3 input3-select">
+            <div>
+                <span class="placeholderEx"> رشته تحصیلی خود در مقطع دیپلم را وارد کنید</span>
+                <select class="selection-2" name="ReshtehDiplom">
+                    <option>ریاضی و فیزیک</option>
+                    <option>علوم تجربی</option>
+                    <option>علوم انسانی</option>
+                    <option>فنی و حرفه ای</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="container-contact3-form-btn">
+            <input type="submit" class="contact3-form-btn" value="ثبت" />
+        </div>
+    </form>

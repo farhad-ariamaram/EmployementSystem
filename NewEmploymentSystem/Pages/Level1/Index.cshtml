@@ -1,0 +1,179 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level1.IndexModel
+@{
+    ViewData["Title"] = "مرحله ورود اطلاعات اولیه";
+}
+
+<partial name="_Steps" model="0" />
+
+<form name="myForm" onsubmit="return validateForm()" class="contact3-form" method="post">
+    <span class="contact3-form-title">
+        <i class="fa fa-2x fa-user-circle"></i>
+        <br />
+        مرحله ورود اطلاعات اولیه
+    </span>
+
+    <div class="wrap-input3">
+        <span asp-validation-for="primaryInformation.FirstName"></span>
+        <input class="input3" type="text" asp-for="primaryInformation.FirstName" placeholder="نام">
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="wrap-input3">
+        <span asp-validation-for="primaryInformation.LastName"></span>
+        <input class="input3" type="text" asp-for="primaryInformation.LastName" placeholder="نام خانوادگی">
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="wrap-input3">
+        <span asp-validation-for="primaryInformation.NationalCode"></span>
+        @Html.ValidationMessage("NationalCode")
+        <span style="display:none" class="field-validation-error" id="nationalCodeerror">فرمت وارد شده صحیح نمی‌باشد</span>
+        <input id="nationalCodeInput" class="input3" type="text" asp-for="primaryInformation.NationalCode" placeholder="کد ملی">
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="wrap-input3">
+        <span class="placeholderEx">تاریخ تولد</span>
+        <span style="display:none" class="field-validation-error" id="pcal1error">این فیلد اجباری است</span>
+        <input type="text" name="BirthDate" class="pdate" id="pcal1" readonly>
+    </div>
+
+    <div class="wrap-input3">
+        <span class="placeholderEx">جنسیت</span>
+        <select name="gender">
+            <option value="آقا">آقا</option>
+            <option value="خانم">خانم</option>
+        </select>
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="wrap-input3">
+        <span class="placeholderEx">وضعیت تاهل</span>
+        <select name="marital" onchange="maritalChange(this);">
+            <option value="متاهل">متاهل</option>
+            <option value="مجرد">مجرد</option>
+            <option value="مطلقه">مطلقه</option>
+            <option value="متارکه">متارکه</option>
+        </select>
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="wrap-input3" id="ChildrenNo">
+        <span class="placeholderEx">تعداد فرزندان</span>
+        <span asp-validation-for="primaryInformation.ChildrenNo"></span>
+        <input class="input3" asp-for="primaryInformation.ChildrenNo" value="0">
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="wrap-input3">
+        <span class="placeholderEx">افراد تحت تکفل</span>
+        <span asp-validation-for="primaryInformation.Tutelage"></span>
+        <input class="input3" asp-for="primaryInformation.Tutelage" value="0">
+        <span class="focus-input3"></span>
+    </div>
+
+    <br />
+    <div class="placeholderEx justify">توجه: <br />در ورود های آتی به سایت برای تکمیل اطلاعات از شماره تماس شما به عنوان نام کاربری و از کد ملی شما به عنوان رمز عبور استفاده خواهد شد</div>
+    <br />
+
+    <div class="container-contact3-form-btn">
+        <input id="submittion" type="submit" class="contact3-form-btn" value="ثبت"/>
+    </div>
+</form>
+
+<script>
+    document.forms["myForm"]["BirthDate"].value = localStorage.getItem('bd9');
+    function validateForm() {
+        $("#submittion").disabled = true;
+        $("#submittion").value = 'در حال ثبت';
+        localStorage.setItem("bd9", document.forms["myForm"]["BirthDate"].value);
+        $("#submittion").prop("disabled", true);
+        var sd = document.forms["myForm"]["BirthDate"].value;
+        if (sd == "") {
+            $("#pcal1error").css("display", "block");
+            $("#submittion").removeAttr("disabled");
+            return false;
+        } else {
+            $("#pcal1error").css("display", "none");
+        }
+
+        if (!NationalCode($("#nationalCodeInput").val())) {
+            $("#nationalCodeerror").css("display", "block");
+            $("html, body").animate({
+                scrollTop: 0
+            }, 500);
+            $("#submittion").removeAttr("disabled");
+            return false;
+        } else {
+            $("#nationalCodeerror").css("display", "none");
+        }
+
+    }
+
+    //تابع مخفی کردن تعداد فرزندان برای فرد مجرد
+    function maritalChange(sel) {
+        if (sel.value == "متاهل" || sel.value == "مطلقه" || sel.value == "متارکه") {
+            $("#ChildrenNo").show();
+        } else {
+            $("#ChildrenNo").hide();
+        }
+    }
+
+    //تابع بررسی صحت کد ملی
+    function NationalCode(input) {
+        var L = input.length;
+        if (L != 10) return false;
+
+        if (!/^\d{10}$/.test(input)
+            || input == '0000000000'
+            || input == '1111111111'
+            || input == '2222222222'
+            || input == '3333333333'
+            || input == '4444444444'
+            || input == '5555555555'
+            || input == '6666666666'
+            || input == '7777777777'
+            || input == '8888888888'
+            || input == '9999999999')
+            return false;
+        var check = parseInt(input[9]);
+        var sum = 0;
+        var i;
+        for (i = 0; i < 9; ++i) {
+            sum += parseInt(input[i]) * (10 - i);
+        }
+        sum %= 11;
+        return (sum < 2 && check == sum) || (sum >= 2 && check + sum == 11);
+    }
+
+    function fixNumber(str) {
+        var persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g];
+        var arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
+        if (typeof str === 'string') {
+            for (var i = 0; i < 10; i++) {
+                str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+            }
+        }
+        return str;
+    }
+    function Load() {
+        $("#nationalCodeInput").keyup(function () {
+            $("#nationalCodeInput").val(fixNumber($("#nationalCodeInput").val()));
+            if (!NationalCode($("#nationalCodeInput").val())) {
+                $("#nationalCodeerror").css("display", "block");
+            } else {
+                $("#nationalCodeerror").css("display", "none");
+            }
+        });
+
+        $(".pcalBtn").click(function () {
+            $("#pcal1error").hide();
+            $("#pcal2error").hide();
+        });
+    }
+
+
+
+
+</script>

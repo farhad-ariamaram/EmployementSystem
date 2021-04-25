@@ -1,0 +1,35 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level8.IndexModel
+@{
+    ViewData["Title"] = "چگونه با ما آشنا شدید؟";
+}
+
+    <partial name="_Steps" model="@ViewData["Level"]" />
+
+<form class="contact3-form validate-form" method="post">
+    <span class="contact3-form-title">
+        <i class="fa fa-2x fa-info"></i>
+        <br />
+        چگونه با ما آشنا شدید؟
+    </span>
+
+    <div class="wrap-input3">
+        <span asp-validation-for="howFind.HowFindTitle"></span>
+        <input asp-for="howFind.HowFindTitle" class="input3" placeholder="از چه طریقی با ما آشنا شدید؟">
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="textwhite"><input id="moredescheckbox" type="checkbox" />توضیحات بیشتر</div><br />
+    <div id="moredescription" class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
+        <span asp-validation-for="howFind.AdditionalDes"></span>
+        <textarea class="input3" asp-for="howFind.AdditionalDes" placeholder="توضیخات"></textarea>
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="container-contact3-form-btn">
+        <button type="submit" class="contact3-form-btn">
+            ثبت
+        </button>
+    </div>
+
+</form>

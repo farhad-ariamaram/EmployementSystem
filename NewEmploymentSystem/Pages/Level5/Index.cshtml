@@ -1,0 +1,37 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level5.IndexModel
+@{
+    ViewData["Title"] = "مرحله ثبت مهارت ها";
+}
+
+<partial name="_Steps" model="@ViewData["Level"]" />
+
+<script>
+    localStorage.removeItem("gd1");
+</script>
+
+<form class="contact3-form validate-form" method="post">
+    <span class="contact3-form-title">
+        <i class="fa fa-2x fa fa-cogs"></i>
+        <br />
+        مرحله ثبت مهارت ها
+    </span>
+    <span>مهارت های اضافه شده:</span>
+    <ul class="list-group">
+        @foreach (var item in Model.tblUserSkill)
+        {
+            <li class="list-group-item">@item.SkillTitle</li>
+        }
+    </ul>
+
+    <div class="container-contact3-form-btn">
+        <a class="contact3-form-btn" asp-page="SkillField">افزودن جدید</a>
+        <div class="container-contact3-form-btn">
+            <button type="submit" class="contact3-form-btn">
+                سوالات بعدی
+            </button>
+        </div>
+    </div>
+
+</form>
+

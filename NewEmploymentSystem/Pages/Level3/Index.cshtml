@@ -1,0 +1,26 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level3.IndexModel
+@{
+    ViewData["Title"] = "مرحله ثبت مشخصات تحصیلی";
+}
+
+<partial name="_Steps" model="@ViewData["Level"]" />
+
+<form class="contact3-form validate-form" method="post">
+    <span class="contact3-form-title">
+        <i class="fa fa-2x fa-graduation-cap"></i>
+        <br />
+        مرحله ثبت مشخصات تحصیلی
+    </span>
+
+    <div class="wrap-input3 input3-select">
+        <div>
+            <span class="placeholderEx">آخرین سطح مدرک تحصیلی خود را وارد کنید:</span>
+            <select asp-for="tblCustomerDegree.DiplomaId" asp-items="ViewBag.DiplomaId" class="selection-2"></select>
+        </div>
+    </div>
+
+    <div class="container-contact3-form-btn">
+        <input type="submit" class="contact3-form-btn" value="ثبت" />
+    </div>
+</form>

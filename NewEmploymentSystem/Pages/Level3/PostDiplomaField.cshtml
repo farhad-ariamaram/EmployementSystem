@@ -1,0 +1,43 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level3.PostDiplomaFieldModel
+@{
+    ViewData["Title"] = "مرحله ثبت مشخصات تحصیلی";
+}
+
+
+    <form onsubmit="return validateForm()" name="myForm" class="contact3-form validate-form" method="post">
+        <span class="contact3-form-title">
+            <i class="fa fa-2x fa-graduation-cap"></i>
+            <br />
+            مرحله ثبت مشخصات تحصیلی
+        </span>
+
+        <div class="wrap-input3">
+            <span style="display:none" class="field-validation-error" id="pcal1error">این فیلد اجباری است</span>
+            <span style="display:none" class="field-validation-error" id="pcal2error">فقط از حروف فارسی استفاده کنید</span>
+            <span class="placeholderEx">نام رشته تحصیلی خود در مقطع فوق دیپلم را وارد کنید</span>
+            <input class="input3 justPersian" type="text" name="PostDiplomReshteh" placeholder="رشته تحصیلی مقطع فوق دیپلم(فقط حروف فارسی)">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="container-contact3-form-btn">
+            <a class="contact3-form-btn mb-1" asp-page="DiplomaField">فوق دیپلم ندارم</a>
+            <button type="submit" class="contact3-form-btn">
+                ثبت
+            </button>
+        </div>
+    </form>
+
+<script>
+    function validateForm() {
+        var text = document.forms["myForm"]["PostDiplomReshteh"].value;
+        if (text == "" || text.length < 2) {
+            $("#pcal1error").css("display", "block");
+            return false;
+        }
+        if (!persianRex.text.test(text)) {
+            $("#pcal2error").css("display", "block");
+            return false;
+        }
+    }
+</script>

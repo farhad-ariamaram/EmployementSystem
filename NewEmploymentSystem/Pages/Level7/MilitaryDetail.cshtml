@@ -1,0 +1,114 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level7.MilitaryDetailModel
+@{
+    ViewData["Title"] = "وضعیت نظام وظیفه";
+}
+
+    <span class="contact3-form-title">
+        <img height=80 width=80 src="/images/icons/soldier.png">
+        <br />
+        وضعیت نظام وظیفه
+    </span>
+
+@if (ViewData["MilitaryId"].Equals("2")) //PayanKhedmat
+{
+    <form onsubmit="return validateForm()" name="myForm" class="contact3-form validate-form" method="post">
+        <div class="wrap-input3">
+            <span class="placeholderEx">تاریخ شروع</span>
+            <span style="display:none" class="field-validation-error" id="pcal1error">این فیلد اجباری است</span>
+            <input type="text" name="StartDate" class="pdate" id="pcal1" readonly>
+        </div>
+
+        <div class="wrap-input3">
+            <span class="placeholderEx">تاریخ پایان</span>
+            <span style="display:none" class="field-validation-error" id="pcal2error">این فیلد اجباری است</span>
+            <input type="text" name="EndDate" class="pdate" id="pcal2" readonly>
+        </div>
+
+        <div class="wrap-input3 input3-select">
+            <div>
+                <span class="placeholderEx">ارگان خدمت خود را انتخاب کنید</span>
+                <select asp-for="military.OrganizationId" asp-items="ViewBag.OrganizationId" class="selection-2"></select>
+            </div>
+        </div>
+
+        <div class="wrap-input3">
+            <span class="placeholderEx">شهر محل خدمت</span>
+            <span asp-validation-for="military.City"></span>
+            <input asp-for="military.City" class="input3" value="همدان">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3">
+            <span class="placeholderEx">محل خدمت</span>
+            <span asp-validation-for="military.Unit"></span>
+            <input asp-for="military.Unit" class="input3" value="کلانتری 11 همدان">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="textwhite"><input id="moredescheckbox" type="checkbox" />توضیحات بیشتر</div>
+        <br />
+        <div id="moredescription" class="wrap-input3">
+            <input asp-for="military.Description" class="input3">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="container-contact3-form-btn">
+            <input type="submit" class="contact3-form-btn" value="ثبت" />
+        </div>
+    </form>
+}
+else //moaf
+{
+    <form onsubmit="return validateForm()" name="myForm" class="contact3-form validate-form" method="post">
+        <div class="wrap-input3" id="MoafDes">
+            <span class="placeholderEx">توضیحات مربوط به معافیت</span>
+            <span asp-validation-for="military.ExemptDescription"></span>
+            <textarea asp-for="military.ExemptDescription" class="input3"></textarea>
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="textwhite"><input id="moredescheckbox" type="checkbox" />توضیحات بیشتر</div>
+        <br />
+        <div id="moredescription" class="wrap-input3">
+            <input asp-for="military.Description" class="input3">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="container-contact3-form-btn">
+            <input type="submit" class="contact3-form-btn" value="ثبت" />
+        </div>
+    </form>
+}
+
+<script>
+    document.forms["myForm"]["StartDate"].value = localStorage.getItem('sd7');
+    document.forms["myForm"]["EndDate"].value = localStorage.getItem('ed7');
+    function validateForm() {
+        localStorage.setItem("sd7", document.forms["myForm"]["StartDate"].value);
+        localStorage.setItem("ed7", document.forms["myForm"]["EndDate"].value);
+
+        var sd = document.forms["myForm"]["StartDate"].value;
+        var ed = document.forms["myForm"]["EndDate"].value;
+        if (sd == "") {
+            $("#pcal1error").css("display", "block");
+            return false;
+        } else {
+            $("#pcal1error").css("display", "none");
+        }
+        if (ed == "") {
+            $("#pcal2error").css("display", "block");
+            return false;
+        } else {
+            $("#pcal2error").css("display", "none");
+        }
+    }
+
+    function Load() {
+        $(".pcalBtn").click(function () {
+            $("#pcal1error").hide();
+            $("#pcal2error").hide();
+        });
+    }
+</script>
+

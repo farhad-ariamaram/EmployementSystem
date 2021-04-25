@@ -1,0 +1,72 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level2.IndexModel
+@{
+    ViewData["Title"] = "مرحله تغییر رمز ورود";
+}
+
+<partial name="_Steps" model="1" />
+
+<form onsubmit="return validateForm()" name="myForm" class="contact3-form" method="post">
+    <span class="contact3-form-title">
+        <i class="fa fa-2x fa-key"></i>
+        <br />
+        مرحله تغییر رمز ورود
+    </span>
+    <div class="alert alert-warning">به صورت پیش فرض نام کاربری شما همان شماره تماس شما و رمز عبور شما همان کد ملی شما می‌باشد. در صورت تمایل می‌توانید رمز عبور خود را تغییر دهید</div>
+
+    <input type="hidden" asp-for="user.Id" />
+    <input type="hidden" asp-for="user.CurrentLevel" />
+    <input type="hidden" asp-for="user.PagesSequenceId" />
+
+    <div class="wrap-input3">
+        <span class="placeholderEx">نام کاربری شما:</span>
+        <input class="input3" type="text" asp-for="user.Username" placeholder="نام کاربری" readonly>
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="wrap-input3">
+        <span asp-validation-for="user.Password"></span><br />
+        <span style="display:none" class="field-validation-error" id="pcal2error">طول پسورد حداقل 6 حرف می‌باشد</span>
+        <span class="placeholderEx">پسورد فعلی شما: (قابل تغییر)</span>
+        <input id="pass" class="input3" type="text" asp-for="user.Password" placeholder="رمز ورود">
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="container-contact3-form-btn">
+        <input type="submit" class="contact3-form-btn" value="ثبت" />
+    </div>
+</form>
+
+<script>
+
+    function validateForm() {
+        if ($("#pass").val().length < 6) {
+            $("#pcal2error").css("display", "block");
+            return false;
+        } else {
+            $("#pcal2error").css("display", "none");
+        }
+    }
+
+    function fixNumber(str) {
+        var persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g];
+        var arabicNumbers = [/٠/g, /١/g, /٢/g, /٣/g, /٤/g, /٥/g, /٦/g, /٧/g, /٨/g, /٩/g];
+        if (typeof str === 'string') {
+            for (var i = 0; i < 10; i++) {
+                str = str.replace(persianNumbers[i], i).replace(arabicNumbers[i], i);
+            }
+        }
+        return str;
+    }
+    function Load() {
+        $("#pass").keyup(function () {
+            $("#pass").val(fixNumber($("#pass").val()));
+            if ($("#pass").val().length < 6) {
+                $("#pcal2error").css("display", "block");
+                return false;
+            } else {
+                $("#pcal2error").css("display", "none");
+            }
+        });
+    }
+</script>

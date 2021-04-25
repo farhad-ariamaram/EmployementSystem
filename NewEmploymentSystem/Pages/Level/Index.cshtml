@@ -1,0 +1,19 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level.IndexModel
+@{
+    ViewData["Title"] = "تکمیل ثبت نام اولیه";
+}
+
+    <partial name="_Steps" model="9" />
+
+    <form class="contact3-form validate-form" method="post">
+        <h4 class="justify">
+            از حوصله شما سپاسگذاریم. در اولین فرصت پس از بررسی اطلاعات، نتیجه برای شما پیامک خواهد شد
+        </h4>
+        <br />
+
+        <div class="wrap-input3">
+            <div class="alert alert-warning">شماره پیگیری شما : @Model.Trackcode</div>
+        </div>
+
+    </form>

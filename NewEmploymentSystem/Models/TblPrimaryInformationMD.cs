@@ -19,7 +19,7 @@ namespace NewEmploymentSystem.Models
 
         [Required(ErrorMessage = "این فیلد اجباری است")]
         [StringLength(10, MinimumLength = 10, ErrorMessage = "طول این فیلد باید 10 کاراکتر ‌باشد")]
-        [RegularExpression("([0-9]+)", ErrorMessage = "فرمت وارد شده صحیح نمی‌باشد")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "فرمت کد ملی وارد شده صحیح نمی‌باشد")]
         public string NationalCode { get; set; }
     }
 

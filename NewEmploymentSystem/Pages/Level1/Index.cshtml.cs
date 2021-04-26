@@ -50,7 +50,7 @@ namespace NewEmploymentSystem.Pages.Level1
 
             if (!_NationalCodeCheck(primaryInformation.NationalCode))
             {
-                ModelState.AddModelError("NationalCode", "فرمت وارد شده صحیح نمی‌باشد");
+                ModelState.AddModelError("NationalCode", "کد ملی وارد شده صحیح نمی‌باشد");
                 return Page();
             }
 

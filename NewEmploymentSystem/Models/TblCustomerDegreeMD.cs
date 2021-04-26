@@ -12,7 +12,8 @@ namespace NewEmploymentSystem.Models
         [Required(ErrorMessage = "این فیلد اجباری است")]
         [RegularExpression("[+-]?([0-9]*[.])?[0-9]+", ErrorMessage = "فرمت وارد شده صحیح نمی‌باشد")]
         [StringLength(50, ErrorMessage = "طول این فیلد حداکثر 50 کاراکتر می‌باشد")]
-        [Range(10, 20, ErrorMessage = "یک عدد بین 10 تا 20 وارد کنید")]
+        [Range(10.0, 20.0, ErrorMessage = "یک عدد بین 10 تا 20 وارد کنید")]
+
         public string FldPoint { get; set; }
 
         [StringLength(500, ErrorMessage = "طول این فیلد حداکثر 500 کاراکتر می‌باشد")]

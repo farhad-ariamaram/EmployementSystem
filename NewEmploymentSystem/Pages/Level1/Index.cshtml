@@ -29,7 +29,7 @@
         <span asp-validation-for="primaryInformation.NationalCode"></span>
         @Html.ValidationMessage("NationalCode")
         <span style="display:none" class="field-validation-error" id="nationalCodeerror">کد ملی وارد شده صحیح نمی‌باشد</span>
-        <input id="nationalCodeInput" class="input3" type="text" asp-for="primaryInformation.NationalCode" placeholder="کد ملی">
+        <input id="nationalCodeInput" class="input3" type="number" asp-for="primaryInformation.NationalCode" placeholder="کد ملی">
         <span class="focus-input3"></span>
     </div>
 

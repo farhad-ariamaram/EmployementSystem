@@ -45,8 +45,8 @@ namespace NewEmploymentSystem.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.;Database=EmployDB;Trusted_Connection=True;");
-
+                //optionsBuilder.UseSqlServer("Server=.;Database=EmployDB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("server=.;database=ShortLinkDB;User Id=sa;Password=S33@||;");
             }
         }
 

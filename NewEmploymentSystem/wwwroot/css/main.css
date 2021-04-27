@@ -138,7 +138,9 @@ iframe {
     border: none !important;
 }
 
-
+select {
+    width:100%;
+}
 
 
 

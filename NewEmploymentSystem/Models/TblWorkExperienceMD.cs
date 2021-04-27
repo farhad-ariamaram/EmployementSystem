@@ -28,12 +28,12 @@ namespace NewEmploymentSystem.Models
         public string FldRelatedPeople { get; set; }
 
         [Required(ErrorMessage = "مقدار اولین حقوق دریافتی اجباری است")]
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "طول فیلد مقدار اولین حقوق دریافتی حداقل 2 و حداکثر 50 کاراکتر می‌باشد")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "طول فیلد مقدار اولین حقوق دریافتی حداقل 1 و حداکثر 50 کاراکتر می‌باشد")]
         [RegularExpression("([0-9]+)", ErrorMessage = "فرمت وارد شده مقدار اولین حقوق دریافتی صحیح نمی‌باشد")]
         public string FldEarlySalary { get; set; }
 
         [Required(ErrorMessage = "آخرین حقوق دریافتی اجباری است")]
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "طول فیلد آخرین حقوق دریافتی حداقل 2 و حداکثر 50 کاراکتر می‌باشد")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "طول فیلد آخرین حقوق دریافتی حداقل 1 و حداکثر 50 کاراکتر می‌باشد")]
         [RegularExpression("([0-9]+)", ErrorMessage = "فرمت وارد شده آخرین حقوق دریافتی صحیح نمی‌باشد")]
         public string FldLateSalary { get; set; }
 
@@ -42,12 +42,12 @@ namespace NewEmploymentSystem.Models
 
         [Required(ErrorMessage = "مقدار ساعت کاری اجباری است")]
         [RegularExpression("([0-9]+)", ErrorMessage = "فرمت وارد شده مقدار ساعت کاری صحیح نمی‌باشد")]
-        [StringLength(100, MinimumLength = 2, ErrorMessage = "طول ساعت کاری حداقل 2 و حداکثر 100 کاراکتر می‌باشد")]
+        [StringLength(100, MinimumLength = 1, ErrorMessage = "طول ساعت کاری حداقل 1 و حداکثر 100 کاراکتر می‌باشد")]
         public string FldWorkTime { get; set; }
 
         [Required(ErrorMessage = "مقدار روز های کاری اجباری است")]
         [RegularExpression("([0-9]+)", ErrorMessage = "فرمت وارد شده مقدار روز های کاری صحیح نمی‌باشد")]
-        [StringLength(100, MinimumLength = 2, ErrorMessage = "طول مقدار روز های کاری حداقل 2 و حداکثر 100 کاراکتر می‌باشد")]
+        [StringLength(100, MinimumLength = 1, ErrorMessage = "طول مقدار روز های کاری حداقل 1 و حداکثر 100 کاراکتر می‌باشد")]
         public string FldWorkDay { get; set; }
 
         [Required(ErrorMessage = "نام واحد اجباری است")]

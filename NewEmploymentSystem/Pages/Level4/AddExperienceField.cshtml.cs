@@ -25,6 +25,7 @@ namespace NewEmploymentSystem.Pages.Level4
         public IActionResult OnPost()
         {
             HttpContext.Session.SetString("ExperienceTitle", Request.Form["ExperienceTitle"]);
+            HttpContext.Session.SetString("IsWorking", Request.Form["IsWorking"]);
             return RedirectToPage("AddExperienceDetail");
         }
     }

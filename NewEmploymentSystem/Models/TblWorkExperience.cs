@@ -32,6 +32,7 @@ namespace NewEmploymentSystem.Models
         public string FldWorkDay { get; set; }
         public string FldUnitName { get; set; }
         public string UserId { get; set; }
+        public bool? IsWorking { get; set; }
 
         public virtual TblLeaveJob FldLeaveJob { get; set; }
         public virtual TblJobTamin FldTaminJob { get; set; }

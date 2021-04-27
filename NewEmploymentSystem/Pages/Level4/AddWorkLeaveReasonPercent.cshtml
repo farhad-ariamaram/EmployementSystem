@@ -13,14 +13,23 @@
 
     <div class="wrap-input3 input3-select">
         <div>
-            <span class="placeholderEx">علت ترک کار</span>
+            <span class="placeholderEx">
+                @if (bool.Parse(HttpContext.Session.GetString("IsWorking")))
+                {
+                    @("علت نارضایتی از کار")
+                }
+                else
+                {
+                    @("علت ترک کار")
+                }
+            </span>
             <select asp-for="tblWorkExperienceLeaveJobDtl.FldLeaveJobId" asp-items="ViewBag.LeaveJobId" class="selection-2"></select>
         </div>
     </div>
 
     <div class="wrap-input3">
         <span asp-validation-for="tblWorkExperienceLeaveJobDtl.FldLeaveJobPercent"></span>
-        <input asp-for="tblWorkExperienceLeaveJobDtl.FldLeaveJobPercent" value="@ViewData["percent"]" class="input3" placeholder="تاثیر این علت در ترک کار به درصد">
+        <input asp-for="tblWorkExperienceLeaveJobDtl.FldLeaveJobPercent" value="@ViewData["percent"]" class="input3" placeholder="تاثیر این علت به درصد">
         <span class="focus-input3"></span>
     </div>
 

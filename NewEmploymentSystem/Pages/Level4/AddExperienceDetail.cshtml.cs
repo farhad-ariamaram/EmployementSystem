@@ -53,9 +53,10 @@ namespace NewEmploymentSystem.Pages.Level4
 
             tblWorkExperience.FldStartDate = sd;
             tblWorkExperience.FldEndDate = ed;
-
+            tblWorkExperience.IsWorking = bool.Parse(HttpContext.Session.GetString("IsWorking"));
             tblWorkExperience.UserId = HttpContext.Session.GetString("uid");
             tblWorkExperience.FldJobTitle = HttpContext.Session.GetString("ExperienceTitle");
+            
             _db.TblWorkExperiences.Add(tblWorkExperience);
             _db.SaveChanges();
             HttpContext.Session.SetString("CurrentJob", tblWorkExperience.FldWorkExperienceId.ToString());

@@ -18,6 +18,14 @@ namespace NewEmploymentSystem.Models
 
         [StringLength(500, ErrorMessage = "طول این فیلد حداکثر 500 کاراکتر می‌باشد")]
         public string FldDes { get; set; }
+
+        [Required(ErrorMessage = "این فیلد اجباری است")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "طول این فیلد حداقل 2 و حداکثر 50 کاراکتر می‌باشد")]
+        public string FldStudyPlace { get; set; }
+
+        [Required(ErrorMessage = "این فیلد اجباری است")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "طول این فیلد حداقل 2 و حداکثر 50 کاراکتر می‌باشد")]
+        public string FldStudyCity { get; set; }
     }
 
     [ModelMetadataType(typeof(TblCustomerDegreeMD))]

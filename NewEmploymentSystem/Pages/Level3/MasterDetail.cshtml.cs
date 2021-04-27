@@ -69,7 +69,6 @@ namespace NewEmploymentSystem.Pages.Level3
             tblCustomerDegree.FldStartDate = sd;
             tblCustomerDegree.FldEndDate = ed;
             tblCustomerDegree.FldExportDate = exd;
-            tblCustomerDegree.CustomerName = HttpContext.Session.GetString("Fullname");
             tblCustomerDegree.UserId = HttpContext.Session.GetString("uid");
             tblCustomerDegree.DiplomaId = 13;
             tblCustomerDegree.FldEducationName = HttpContext.Session.GetString("KarshenasiArshadReshteh");

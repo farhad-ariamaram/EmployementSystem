@@ -19,6 +19,8 @@ namespace NewEmploymentSystem.Models
         public string FldPoint { get; set; }
         public string FldDes { get; set; }
         public string UserId { get; set; }
+        public string FldStudyPlace { get; set; }
+        public string FldStudyCity { get; set; }
 
         public virtual PayDiploma Diploma { get; set; }
         public virtual PayEducation Education { get; set; }

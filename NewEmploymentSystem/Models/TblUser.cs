@@ -10,8 +10,11 @@ namespace NewEmploymentSystem.Models
         public TblUser()
         {
             TblCustomerDegrees = new HashSet<TblCustomerDegree>();
+            TblEmergencyCalls = new HashSet<TblEmergencyCall>();
+            TblGeneralRecords = new HashSet<TblGeneralRecord>();
             TblHowFinds = new HashSet<TblHowFind>();
             TblIpLogs = new HashSet<TblIpLog>();
+            TblMedicalRecords = new HashSet<TblMedicalRecord>();
             TblPageTimeLogs = new HashSet<TblPageTimeLog>();
             TblPrimaryInformations = new HashSet<TblPrimaryInformation>();
             TblUserJobs = new HashSet<TblUserJob>();
@@ -30,8 +33,11 @@ namespace NewEmploymentSystem.Models
 
         public virtual TblPagesSequence PagesSequence { get; set; }
         public virtual ICollection<TblCustomerDegree> TblCustomerDegrees { get; set; }
+        public virtual ICollection<TblEmergencyCall> TblEmergencyCalls { get; set; }
+        public virtual ICollection<TblGeneralRecord> TblGeneralRecords { get; set; }
         public virtual ICollection<TblHowFind> TblHowFinds { get; set; }
         public virtual ICollection<TblIpLog> TblIpLogs { get; set; }
+        public virtual ICollection<TblMedicalRecord> TblMedicalRecords { get; set; }
         public virtual ICollection<TblPageTimeLog> TblPageTimeLogs { get; set; }
         public virtual ICollection<TblPrimaryInformation> TblPrimaryInformations { get; set; }
         public virtual ICollection<TblUserJob> TblUserJobs { get; set; }

@@ -157,6 +157,30 @@ namespace NewEmploymentSystem.Pages
                         return RedirectToPage("Level" + number + "/Index");
                     }
 
+                    //اگه "تن" بود یعنی مرحله دهم کامل کرده و الان مرحله یازدهم
+                    if (currentLevel.Equals("Ten"))
+                    {
+                        var q = from a in _db.TblPagesSequences
+                                where a.Status == true
+                                select a.Eleven;
+
+                        var number = q.FirstOrDefault();
+
+                        return RedirectToPage("Level" + number + "/Index");
+                    }
+
+                    //اگه "الون" بود یعنی مرحله یازدهم کامل کرده و الان مرحله دوازدهم
+                    if (currentLevel.Equals("Eleven"))
+                    {
+                        var q = from a in _db.TblPagesSequences
+                                where a.Status == true
+                                select a.Twelve;
+
+                        var number = q.FirstOrDefault();
+
+                        return RedirectToPage("Level" + number + "/Index");
+                    }
+
                     return RedirectToPage("Level/Index");
                 }
 

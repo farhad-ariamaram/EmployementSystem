@@ -6,14 +6,14 @@
 
 <partial name="_Steps" model="@ViewData["Level"]" />
 
-<form class="contact3-form validate-form" method="post">
+<form class="contact3-form" method="post">
     <span class="contact3-form-title">
         <i class="fa fa-2x fa-map-marker"></i>
         <br />
         ثبت کد پستی
     </span>
 
-    <div class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
+    <div class="wrap-input3">
         <span asp-validation-for="postal.postcode"></span>
         <input type="number" asp-for="postal.postcode" class="input3" placeholder="کد پستی">
         <span class="focus-input3"></span>

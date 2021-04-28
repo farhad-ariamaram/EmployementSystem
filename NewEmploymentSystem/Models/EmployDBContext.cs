@@ -20,12 +20,15 @@ namespace NewEmploymentSystem.Models
         public virtual DbSet<PayDiploma> PayDiplomas { get; set; }
         public virtual DbSet<PayEducation> PayEducations { get; set; }
         public virtual DbSet<TblCustomerDegree> TblCustomerDegrees { get; set; }
+        public virtual DbSet<TblEmergencyCall> TblEmergencyCalls { get; set; }
+        public virtual DbSet<TblGeneralRecord> TblGeneralRecords { get; set; }
         public virtual DbSet<TblHowFind> TblHowFinds { get; set; }
         public virtual DbSet<TblIpLog> TblIpLogs { get; set; }
         public virtual DbSet<TblJob> TblJobs { get; set; }
         public virtual DbSet<TblJobTamin> TblJobTamins { get; set; }
         public virtual DbSet<TblLeaveJob> TblLeaveJobs { get; set; }
         public virtual DbSet<TblLink> TblLinks { get; set; }
+        public virtual DbSet<TblMedicalRecord> TblMedicalRecords { get; set; }
         public virtual DbSet<TblMilitary> TblMilitaries { get; set; }
         public virtual DbSet<TblMilitaryOrganization> TblMilitaryOrganizations { get; set; }
         public virtual DbSet<TblPageTimeLog> TblPageTimeLogs { get; set; }
@@ -45,8 +48,8 @@ namespace NewEmploymentSystem.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //optionsBuilder.UseSqlServer("Server=.;Database=EmployDB;Trusted_Connection=True;");
-                optionsBuilder.UseSqlServer("server=.;database=EmployDB;User Id=sa;Password=S33@||;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=.;Database=EmployDB;Trusted_Connection=True;");
             }
         }
 
@@ -164,6 +167,48 @@ namespace NewEmploymentSystem.Models
                     .HasConstraintName("FK_Tbl_CustomerDegree_Tbl_User");
             });
 
+            modelBuilder.Entity<TblEmergencyCall>(entity =>
+            {
+                entity.ToTable("Tbl_EmergencyCall");
+
+                entity.Property(e => e.Description).HasMaxLength(1000);
+
+                entity.Property(e => e.FirstName).HasMaxLength(50);
+
+                entity.Property(e => e.LastName).HasMaxLength(50);
+
+                entity.Property(e => e.PhoneNo).HasMaxLength(50);
+
+                entity.Property(e => e.Relative).HasMaxLength(50);
+
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(50)
+                    .HasColumnName("User_Id");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.TblEmergencyCalls)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Tbl_EmergencyCall_Tbl_User");
+            });
+
+            modelBuilder.Entity<TblGeneralRecord>(entity =>
+            {
+                entity.ToTable("Tbl_GeneralRecord");
+
+                entity.Property(e => e.CriminalDes).HasMaxLength(1000);
+
+                entity.Property(e => e.Description).HasMaxLength(1000);
+
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(50)
+                    .HasColumnName("User_Id");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.TblGeneralRecords)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Tbl_GeneralRecord_Tbl_User");
+            });
+
             modelBuilder.Entity<TblHowFind>(entity =>
             {
                 entity.ToTable("Tbl_HowFind");
@@ -265,6 +310,34 @@ namespace NewEmploymentSystem.Models
                 entity.Property(e => e.Phone).HasMaxLength(50);
             });
 
+            modelBuilder.Entity<TblMedicalRecord>(entity =>
+            {
+                entity.ToTable("Tbl_MedicalRecord");
+
+                entity.Property(e => e.ComplicationsDes)
+                    .HasMaxLength(1000)
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.Description).HasMaxLength(1000);
+
+                entity.Property(e => e.Disease).HasMaxLength(50);
+
+                entity.Property(e => e.EndDate).HasColumnType("datetime");
+
+                entity.Property(e => e.ProblemDes).HasMaxLength(1000);
+
+                entity.Property(e => e.StartDate).HasColumnType("datetime");
+
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(50)
+                    .HasColumnName("User_Id");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.TblMedicalRecords)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Tbl_MedicalRecord_Tbl_User");
+            });
+
             modelBuilder.Entity<TblMilitary>(entity =>
             {
                 entity.ToTable("Tbl_Military");
@@ -347,9 +420,9 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.Property(e => e.Message).HasMaxLength(10);
+                entity.Property(e => e.Message).HasMaxLength(1000);
 
-                entity.Property(e => e.Phone).HasMaxLength(20);
+                entity.Property(e => e.Phone).HasMaxLength(1000);
             });
 
             modelBuilder.Entity<TblSmsSent>(entity =>
@@ -358,9 +431,9 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.Property(e => e.Message).HasMaxLength(100);
+                entity.Property(e => e.Message).HasMaxLength(1000);
 
-                entity.Property(e => e.Phone).HasMaxLength(20);
+                entity.Property(e => e.Phone).HasMaxLength(1000);
             });
 
             modelBuilder.Entity<TblUser>(entity =>
@@ -465,6 +538,8 @@ namespace NewEmploymentSystem.Models
                 entity.Property(e => e.Description).HasMaxLength(500);
 
                 entity.Property(e => e.LicenseNo).HasMaxLength(50);
+
+                entity.Property(e => e.LicenseReference).HasMaxLength(50);
 
                 entity.Property(e => e.Location).HasMaxLength(50);
 

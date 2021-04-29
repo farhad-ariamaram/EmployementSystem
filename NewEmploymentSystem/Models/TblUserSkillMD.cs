@@ -22,6 +22,9 @@ namespace NewEmploymentSystem.Models
         [StringLength(50, ErrorMessage = "طول این فیلد حداکثر 50 کاراکتر می‌باشد")]
         public string LicenseNo { get; set; }
 
+        [StringLength(50, ErrorMessage = "طول این فیلد حداکثر 50 کاراکتر می‌باشد")]
+        public string LicenseReference { get; set; }
+
     }
 
     [ModelMetadataType(typeof(TblUserSkillMD))]

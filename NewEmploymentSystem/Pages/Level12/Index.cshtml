@@ -1,0 +1,32 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level12.IndexModel
+@{
+    ViewData["Title"] = "مرحله ثبت سوابق عمومی";
+}
+
+<partial name="_Steps" model="@ViewData["Level"]" />
+
+<form class="contact3-form validate-form" method="post">
+    <span class="contact3-form-title">
+        <i class="fa fa-2x fa-history"></i>
+        <br />
+        مرحله ثبت سوابق عمومی
+    </span>
+    <span> سوابق عمومی اضافه شده:</span>
+    <ul class="list-group">
+        @foreach (var item in Model.tblGeneralRecord)
+        {
+            <li class="list-group-item">@item.CriminalTiltle</li>
+        }
+    </ul>
+
+    <div class="container-contact3-form-btn">
+        <a class="contact3-form-btn" asp-page="AddGeneralRecord">افزودن جدید</a>
+        <div class="container-contact3-form-btn">
+            <button type="submit" class="contact3-form-btn">
+                سوالات بعدی
+            </button>
+        </div>
+    </div>
+
+</form>

@@ -41,6 +41,9 @@ namespace NewEmploymentSystem.Utilities
                 case "Ten":
                     NextLevel = "Eleven";
                     break;
+                case "Eleven":
+                    NextLevel = "Twelve";
+                    break;
                 default:
                     NextLevel = currentLevel;
                     break;
@@ -87,6 +90,8 @@ namespace NewEmploymentSystem.Utilities
                     return 10;
                 case "Eleven":
                     return 11;
+                case "Twelve":
+                    return 12;
                 default:
                     return 0;
             }

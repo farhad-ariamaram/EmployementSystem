@@ -181,6 +181,18 @@ namespace NewEmploymentSystem.Pages
                         return RedirectToPage("Level" + number + "/Index");
                     }
 
+                    //اگه "توالو" بود یعنی مرحله دوازدهم کامل کرده و الان مرحله سیزدهم
+                    if (currentLevel.Equals("Twelve"))
+                    {
+                        var q = from a in _db.TblPagesSequences
+                                where a.Status == true
+                                select a.Thirteen;
+
+                        var number = q.FirstOrDefault();
+
+                        return RedirectToPage("Level" + number + "/Index");
+                    }
+
                     return RedirectToPage("Level/Index");
                 }
 

@@ -197,6 +197,8 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.CriminalDes).HasMaxLength(1000);
 
+                entity.Property(e => e.CriminalTiltle).HasMaxLength(50);
+
                 entity.Property(e => e.Description).HasMaxLength(1000);
 
                 entity.Property(e => e.UserId)

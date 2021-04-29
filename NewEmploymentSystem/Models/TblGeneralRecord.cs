@@ -8,7 +8,7 @@ namespace NewEmploymentSystem.Models
     public partial class TblGeneralRecord
     {
         public long Id { get; set; }
-        public bool? HasCriminal { get; set; }
+        public string CriminalTiltle { get; set; }
         public string CriminalDes { get; set; }
         public string UserId { get; set; }
         public string Description { get; set; }

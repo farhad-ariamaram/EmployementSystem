@@ -1,0 +1,56 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level11.AddEmergencyModel
+@{
+    ViewData["Title"] = "مرحله معرفی آشنایان";
+}
+
+    <form name="myForm" onsubmit="return validateForm()" method="post" class="contact3-form">
+        <span class="contact3-form-title">
+            <i class="fa fa-2x fa fa-phone"></i>
+            <br />
+            مرحله معرفی آشنایان
+        </span>
+        <div class="alert alert-info">مشخصات یکی از آشنایان خود را در فرم زیر وارد کنید که در صورتی که به شما دسترسی نداشتیم بتوانیم بوسلیه ایشان با شما تماس بگیریم</div>
+        <div class="wrap-input3">
+            <span asp-validation-for="tblEmergencyCall.FirstName"></span>
+            <input asp-for="tblEmergencyCall.FirstName" class="input3" placeholder="نام">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3">
+            <span asp-validation-for="tblEmergencyCall.LastName"></span>
+            <input asp-for="tblEmergencyCall.LastName" class="input3" placeholder="نام خانوادگی" />
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3">
+            <span asp-validation-for="tblEmergencyCall.PhoneNo"></span>
+            <input asp-for="tblEmergencyCall.PhoneNo" class="input3" placeholder="شماره تماس"/>
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3">
+            <span asp-validation-for="tblEmergencyCall.Relative"></span>
+            <input asp-for="tblEmergencyCall.Relative" class="input3" placeholder="نسبت این فرد با شما" />
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="textwhite">
+            <span class="placeholderEx">توضیخات بیشتر</span>
+            <input id="moredescheckbox" type="checkbox" onchange="$('#moredes').toggle()" />
+        </div>
+        <br />
+
+        <div id="moredes" class="wrap-input3" style="display:none">
+            <span asp-validation-for="tblEmergencyCall.Description"></span>
+            <textarea class="input3" asp-for="tblEmergencyCall.Description" placeholder="توضیخات"></textarea>
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="container-contact3-form-btn">
+            <button type="submit" class="contact3-form-btn">
+                ثبت
+            </button>
+        </div>
+
+    </form>

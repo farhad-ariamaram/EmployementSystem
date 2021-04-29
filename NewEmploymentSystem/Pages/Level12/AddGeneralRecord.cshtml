@@ -1,0 +1,44 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level12.AddGeneralRecordModel
+@{
+    ViewData["Title"] = "مرحله ثبت سوابق عمومی";
+}
+
+<form name="myForm" onsubmit="return validateForm()" method="post" class="contact3-form">
+    <span class="contact3-form-title">
+        <i class="fa fa-2x fa-history"></i>
+        <br />
+        مرحله ثبت سوابق عمومی
+    </span>
+
+    <div class="wrap-input3">
+        <span asp-validation-for="tblGeneralRecord.CriminalTiltle"></span>
+        <input asp-for="tblGeneralRecord.CriminalTiltle" class="input3" placeholder="عنوان سابقه">
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="wrap-input3">
+        <span asp-validation-for="tblGeneralRecord.CriminalDes"></span>
+        <textarea asp-for="tblGeneralRecord.CriminalDes" class="input3" placeholder="شرح سابقه"></textarea>
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="textwhite">
+        <span class="placeholderEx">توضیحات بیشتر</span>
+        <input id="moredescheckbox" type="checkbox" onchange="$('#moredes').toggle()" />
+    </div>
+    <br />
+
+    <div id="moredes" class="wrap-input3" style="display:none">
+        <span asp-validation-for="tblGeneralRecord.Description"></span>
+        <textarea class="input3" asp-for="tblGeneralRecord.Description" placeholder="توضیحات"></textarea>
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="container-contact3-form-btn">
+        <button type="submit" class="contact3-form-btn">
+            ثبت
+        </button>
+    </div>
+
+</form>

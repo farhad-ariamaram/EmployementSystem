@@ -1,0 +1,37 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level11.IndexModel
+@{
+    ViewData["Title"] = "مرحله معرفی آشنایان";
+}
+
+<partial name="_Steps" model="@ViewData["Level"]" />
+
+<form class="contact3-form validate-form" method="post">
+    <span class="contact3-form-title">
+        <i class="fa fa-2x fa fa-phone"></i>
+        <br />
+        مرحله معرفی آشنایان
+    </span>
+    <div class="alert alert-info">حداقل باید دو نفر را معرفی کنید</div>
+    <br />
+    <span> آشنایان اضافه شده</span>
+    <ul class="list-group">
+        @foreach (var item in Model.tblEmergencyCall)
+        {
+            <li class="list-group-item">@item.FirstName &nbsp; @item.LastName</li>
+        }
+    </ul>
+
+    <div class="container-contact3-form-btn">
+        <a class="contact3-form-btn" asp-page="AddEmergency">افزودن جدید</a>
+        <div class="container-contact3-form-btn">
+            @if (Model.NumberOfAdds > 1)
+            {
+                <button type="submit" class="contact3-form-btn">
+                    سوالات بعدی
+                </button>
+            }
+        </div>
+    </div>
+
+</form>

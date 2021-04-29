@@ -18,7 +18,7 @@ namespace NewEmploymentSystem.Models
         public int? SkillLevel { get; set; }
         public string LicenseNo { get; set; }
         public string LicenseReference { get; set; }
-        public bool? IsSelfTaught { get; set; }
+        public bool IsSelfTaught { get; set; }
 
         public virtual TblSkill Skill { get; set; }
         public virtual TblUser User { get; set; }

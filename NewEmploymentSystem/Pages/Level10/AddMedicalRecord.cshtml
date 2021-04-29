@@ -37,7 +37,7 @@
 
         <div>
             <span class="placeholderEx">آیا این بیماری دارای عوارض است؟</span>
-            <input asp-for="tblMedicalRecord.HasComplications" onclick="$('#ComplicationsDescription').toggle()">
+            <input asp-for="tblMedicalRecord.HasComplications" onchange="$('#ComplicationsDescription').toggle()">
         </div>
 
         <br />
@@ -50,7 +50,7 @@
 
         <div class="textwhite">
             <span class="placeholderEx">توضیخات بیشتر</span>
-            <input id="moredescheckbox" type="checkbox" onclick="$('#moredes').toggle()" />
+            <input id="moredescheckbox" type="checkbox" onchange="$('#moredes').toggle()" />
         </div>
         <br />
 

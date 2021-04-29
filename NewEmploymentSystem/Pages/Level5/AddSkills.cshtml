@@ -4,79 +4,93 @@
     ViewData["Title"] = "مرحله ثبت مهارت ها";
 }
 
-    <form name="myForm" onsubmit="return validateForm()" method="post" class="contact3-form">
-        <span class="contact3-form-title">
-            <i class="fa fa-2x fa fa-cogs"></i>
-            <br />
-            مرحله ثبت مهارت ها
-        </span>
+<form name="myForm" onsubmit="return validateForm()" method="post" class="contact3-form">
+    <span class="contact3-form-title">
+        <i class="fa fa-2x fa fa-cogs"></i>
+        <br />
+        مرحله ثبت مهارت ها
+    </span>
 
 
-        <div class="wrap-input3 input3-select">
-            <div>
-                <span class="placeholderEx">مهارت خود را انتخاب کنید</span>
-                <select asp-for="tblUserSkill.SkillId" asp-items="ViewBag.SkillId" class="selection-2"></select>
-            </div>
+    <div class="wrap-input3 input3-select">
+        <div>
+            <span class="placeholderEx">مهارت خود را انتخاب کنید</span>
+            <select asp-for="tblUserSkill.SkillId" asp-items="ViewBag.SkillId" class="selection-2"></select>
         </div>
+    </div>
 
-        <div class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
-            <span asp-validation-for="tblUserSkill.SkillTitle"></span>
-            <input asp-for="tblUserSkill.SkillTitle" class="input3" placeholder="عنوان مهارت خود را وارد کنید">
-            <span class="focus-input3"></span>
-        </div>
+    <div class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
+        <span asp-validation-for="tblUserSkill.SkillTitle"></span>
+        <input asp-for="tblUserSkill.SkillTitle" class="input3" placeholder="عنوان مهارت خود را وارد کنید">
+        <span class="focus-input3"></span>
+    </div>
 
-        <div class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
-            <span asp-validation-for="tblUserSkill.Location"></span>
-            <input asp-for="tblUserSkill.Location" class="input3" placeholder="محل کسب مهارت">
-            <span class="focus-input3"></span>
-        </div>
+    <div>
+        <span class="placeholderEx">کسب مهارت به صورت خودآموز</span>
+        <input asp-for="tblUserSkill.IsSelfTaught" onchange="$('#skillLocation').toggle()">
+    </div>
+    <br />
 
-        <div class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
-            <span class="placeholderEx">تاریخ کسب مهارت</span>
-            <span style="display:none" class="field-validation-error" id="pcal1error">این فیلد اجباری است</span>
-            <input type="text" name="GetDate" class="pdate" id="pcal1" readonly>
-        </div>
+    <div class="wrap-input3" id="skillLocation">
+        <span asp-validation-for="tblUserSkill"></span>
+        <input asp-for="tblUserSkill.Location" class="input3" placeholder="محل کسب مهارت">
+        <span class="focus-input3"></span>
+    </div>
 
-        <div class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
-            <span class="placeholderEx">نوع مهارت خود را وارد کنید</span>
-            <span asp-validation-for="tblUserSkill.SkillType"></span>
-            <input asp-for="tblUserSkill.SkillType" class="input3" placeholder="مثال: نرم افزار">
-            <span class="focus-input3"></span>
-        </div>
+    <div class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
+        <span class="placeholderEx">تاریخ کسب مهارت</span>
+        <span style="display:none" class="field-validation-error" id="pcal1error">این فیلد اجباری است</span>
+        <input type="text" name="GetDate" class="pdate" id="pcal1" readonly>
+    </div>
 
+    <div class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
+        <span class="placeholderEx">نوع مهارت خود را وارد کنید</span>
+        <span asp-validation-for="tblUserSkill.SkillType"></span>
+        <input asp-for="tblUserSkill.SkillType" class="input3" placeholder="مثال: نرم افزار">
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="wrap-input3">
+        <span class="placeholderEx">سطح مهارت</span>
+        <select name="SkillLevel">
+            <option value="1">سطح 1</option>
+            <option value="2">سطح 2</option>
+            <option value="3">سطح 3</option>
+            <option value="4">سطح 4</option>
+            <option value="5">سطح 5</option>
+        </select>
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="textwhite"><input type="checkbox" onchange="$('#licensesection').toggle();" />گواهی دارید؟</div><br />
+    <br />
+    <div style="display:none" id="licensesection">
         <div class="wrap-input3">
-            <span class="placeholderEx">سطح مهارت</span>
-            <select name="SkillLevel">
-                <option value="1">سطح 1</option>
-                <option value="2">سطح 2</option>
-                <option value="3">سطح 3</option>
-                <option value="4">سطح 4</option>
-                <option value="5">سطح 5</option>
-            </select>
+            <span asp-validation-for="tblUserSkill.LicenseReference"></span>
+            <input asp-for="tblUserSkill.LicenseReference" class="input3" placeholder="نام مرجع گواهی دهنده">
             <span class="focus-input3"></span>
         </div>
-
-        <div class="textwhite"><input id="licensecheckbox" type="checkbox" />گواهی دارید؟</div><br />
-        <div id="licensesection" class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
+        <div class="wrap-input3">
             <span asp-validation-for="tblUserSkill.LicenseNo"></span>
             <input asp-for="tblUserSkill.LicenseNo" class="input3" placeholder="شماره گواهی">
             <span class="focus-input3"></span>
         </div>
+    </div>
 
-        <div class="textwhite"><input id="moredescheckbox" type="checkbox" />توضیحات بیشتر</div><br />
-        <div id="moredescription" class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
-            <span asp-validation-for="tblUserSkill.Description"></span>
-            <textarea class="input3" asp-for="tblUserSkill.Description" placeholder="توضیخات"></textarea>
-            <span class="focus-input3"></span>
-        </div>
+    <div class="textwhite"><input id="moredescheckbox" type="checkbox" />توضیحات بیشتر</div><br />
+    <div id="moredescription" class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
+        <span asp-validation-for="tblUserSkill.Description"></span>
+        <textarea class="input3" asp-for="tblUserSkill.Description" placeholder="توضیخات"></textarea>
+        <span class="focus-input3"></span>
+    </div>
 
-        <div class="container-contact3-form-btn">
-            <button type="submit" class="contact3-form-btn">
-                ثبت
-            </button>
-        </div>
+    <div class="container-contact3-form-btn">
+        <button type="submit" class="contact3-form-btn">
+            ثبت
+        </button>
+    </div>
 
-    </form>
+</form>
 
 <script>
     document.forms["myForm"]["GetDate"].value = localStorage.getItem('gd1');

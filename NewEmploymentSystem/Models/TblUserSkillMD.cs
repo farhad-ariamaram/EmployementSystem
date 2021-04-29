@@ -16,7 +16,6 @@ namespace NewEmploymentSystem.Models
         [StringLength(500, ErrorMessage = "طول این فیلد حداکثر 500 کاراکتر می‌باشد")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "این فیلد اجباری است")]
         [StringLength(50, ErrorMessage = "طول این فیلد حداکثر 50 کاراکتر می‌باشد")]
         public string Location { get; set; }
 

@@ -30,7 +30,7 @@
 
         <div>
             <span class="placeholderEx">هنوز مصرف میکنید؟</span>
-            <input type="checkbox" onclick="$('#EndUse').toggle();" />
+            <input type="checkbox" onchange="$('#EndUse').toggle();" />
         </div>
         <br />
 
@@ -41,7 +41,7 @@
 
         <div>
             <span class="placeholderEx">آیا بر اثر مصرف دچار عوارض شده اید؟</span>
-            <input asp-for="tblMedicalRecord.HasComplications" onclick="$('#ComplicationsDescription').toggle()">
+            <input asp-for="tblMedicalRecord.HasComplications" onchange="$('#ComplicationsDescription').toggle()">
         </div>
         <br />
 
@@ -53,7 +53,7 @@
 
         <div class="textwhite">
             <span class="placeholderEx">توضیخات بیشتر</span>
-            <input id="moredescheckbox" type="checkbox" onclick="$('#moredes').toggle()" />
+            <input id="moredescheckbox" type="checkbox" onchange="$('#moredes').toggle()" />
         </div>
         <br />
 

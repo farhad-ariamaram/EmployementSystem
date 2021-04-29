@@ -1,23 +1,37 @@
 ﻿@page
 @model NewEmploymentSystem.Pages.Level10.IndexModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "مرحله ثبت سوابق پزشکی";
 }
 
-    <form class="contact3-form" method="post">
-        <span class="contact3-form-title">
-            <i class="fa fa-2x fa fa-cogs"></i>
-            <br />
-            مرحله ثبت سوابق پزشکی
-        </span>
+<partial name="_Steps" model="@ViewData["Level"]" />
 
+<script>
+    localStorage.removeItem("sd10");
+    localStorage.removeItem("ed10");
+</script>
+
+<form class="contact3-form validate-form" method="post">
+    <span class="contact3-form-title">
+        <i class="fa fa-2x fa fa-medkit"></i>
+        <br />
+        مرحله ثبت سوابق پزشکی
+    </span>
+    <span> سوابق پزشکی اضافه شده:</span>
+    <ul class="list-group">
+        @foreach (var item in Model.tblMedicalRecords)
+        {
+            <li class="list-group-item">@item.Disease</li>
+        }
+    </ul>
+
+    <div class="container-contact3-form-btn">
+        <a class="contact3-form-btn" asp-page="AddMedicalRecord">افزودن جدید</a>
         <div class="container-contact3-form-btn">
-            <span class="placeholderEx">آیا سیگاری هستید؟</span>
-            <a class="contact3-form-btn" asp-page="SkillField">خیر</a>
             <button type="submit" class="contact3-form-btn">
-                بله
+                سوالات بعدی
             </button>
         </div>
+    </div>
 
-    </form>
-
+</form>

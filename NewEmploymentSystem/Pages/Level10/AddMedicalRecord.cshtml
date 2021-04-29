@@ -1,0 +1,101 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level10.AddMedicalRecordModel
+@{
+    ViewData["Title"] = "مرحله ثبت سوابق پزشکی";
+}
+
+    <form name="myForm" onsubmit="return validateForm()" method="post" class="contact3-form">
+        <span class="contact3-form-title">
+            <i class="fa fa-2x fa fa-medkit"></i>
+            <br />
+            مرحله ثبت سوابق پزشکی
+        </span>
+
+        <div class="wrap-input3">
+            <span asp-validation-for="tblMedicalRecord.Disease"></span>
+            <input asp-for="tblMedicalRecord.Disease" class="input3" placeholder="نام بیماری">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3">
+            <span asp-validation-for="tblMedicalRecord.ProblemDes"></span>
+            <textarea asp-for="tblMedicalRecord.ProblemDes" class="input3" placeholder="شرح بیماری"></textarea>
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
+            <span class="placeholderEx">تاریخ شروع بیماری</span>
+            <span style="display:none" class="field-validation-error" id="pcal1error">این فیلد اجباری است</span>
+            <input type="text" name="StartDate" class="pdate" id="pcal1" readonly>
+        </div>
+
+        <div class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
+            <span class="placeholderEx">تاریخ پایان بیماری</span>
+            <span style="display:none" class="field-validation-error" id="pcal2error">این فیلد اجباری است</span>
+            <input type="text" name="EndDate" class="pdate" id="pcal2" readonly>
+        </div>
+
+        <div>
+            <span class="placeholderEx">آیا این بیماری دارای عوارض است؟</span>
+            <input asp-for="tblMedicalRecord.HasComplications" onclick="$('#ComplicationsDescription').toggle()">
+        </div>
+
+        <br />
+
+        <div class="wrap-input3" id="ComplicationsDescription" style="display:none">
+            <span asp-validation-for="tblMedicalRecord.ComplicationsDes"></span>
+            <textarea asp-for="tblMedicalRecord.ComplicationsDes" class="input3" placeholder="عوارض آن را شرح دهید"></textarea>
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="textwhite">
+            <span class="placeholderEx">توضیخات بیشتر</span>
+            <input id="moredescheckbox" type="checkbox" onclick="$('#moredes').toggle()" />
+        </div>
+        <br />
+
+        <div id="moredes" class="wrap-input3" style="display:none">
+            <span asp-validation-for="tblMedicalRecord.Description"></span>
+            <textarea class="input3" asp-for="tblMedicalRecord.Description" placeholder="توضیخات"></textarea>
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="container-contact3-form-btn">
+            <button type="submit" class="contact3-form-btn">
+                ثبت
+            </button>
+        </div>
+
+    </form>
+
+<script>
+    document.forms["myForm"]["StartDate"].value = localStorage.getItem('sd10');
+    document.forms["myForm"]["EndDate"].value = localStorage.getItem('ed10');
+
+    function validateForm() {
+        localStorage.setItem("sd10", document.forms["myForm"]["StartDate"].value);
+        localStorage.setItem("ed10", document.forms["myForm"]["EndDate"].value);
+
+        var sd = document.forms["myForm"]["StartDate"].value;
+        var ed = document.forms["myForm"]["EndDate"].value;
+        if (sd == "") {
+            $("#pcal1error").css("display", "block");
+            return false;
+        } else {
+            $("#pcal1error").css("display", "none");
+        }
+        if (ed == "") {
+            $("#pcal2error").css("display", "block");
+            return false;
+        } else {
+            $("#pcal2error").css("display", "none");
+        }
+    }
+
+    function Load() {
+        $(".pcalBtn").click(function () {
+            $("#pcal1error").hide();
+            $("#pcal2error").hide();
+        });
+    }
+</script>

@@ -81,8 +81,8 @@
         <br />
 
         <div id="moredes" class="wrap-input3" style="display:none">
-            @*<span asp-validation-for="tblUserCompilation.Description"></span>
-            <textarea class="input3" asp-for="tblUserCompilation.Description" placeholder="توضیحات"></textarea>*@
+            <span asp-validation-for="tblUserLanguage.Description"></span>
+            <textarea class="input3" asp-for="tblUserLanguage.Description" placeholder="توضیحات"></textarea>
             <span class="focus-input3"></span>
         </div>
 
@@ -93,25 +93,3 @@
         </div>
 
     </form>
-
-<script>
-    document.forms["myForm"]["GetDate"].value = localStorage.getItem('gd1');
-
-    function validateForm() {
-        localStorage.setItem("gd1", document.forms["myForm"]["GetDate"].value);
-
-        var gd = document.forms["myForm"]["GetDate"].value;
-        if (gd == "") {
-            $("#pcal1error").css("display", "block");
-            return false;
-        } else {
-            $("#pcal1error").css("display", "none");
-        }
-    }
-
-    function Load() {
-        $(".pcalBtn").click(function () {
-            $("#pcal1error").hide();
-        });
-    }
-</script>

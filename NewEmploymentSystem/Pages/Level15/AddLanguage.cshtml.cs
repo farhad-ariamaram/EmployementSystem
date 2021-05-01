@@ -45,6 +45,10 @@ namespace NewEmploymentSystem.Pages.Level15
             }
 
             tblUserLanguage.UserId = HttpContext.Session.GetString("uid");
+            tblUserLanguage.ReadingLevel = int.Parse(Request.Form["ReadingLevel"].ToString());
+            tblUserLanguage.ListeningLevel = int.Parse(Request.Form["ListeningLevel"].ToString());
+            tblUserLanguage.SpeakingLevel = int.Parse(Request.Form["SpeakingLevel"].ToString());
+            tblUserLanguage.WritingLevel = int.Parse(Request.Form["WritingLevel"].ToString());
             _db.TblUserLanguages.Add(tblUserLanguage);
             _db.SaveChanges();
             return RedirectToPage("Index");

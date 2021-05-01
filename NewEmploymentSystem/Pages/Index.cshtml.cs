@@ -193,6 +193,42 @@ namespace NewEmploymentSystem.Pages
                         return RedirectToPage("Level" + number + "/Index");
                     }
 
+                    //اگه "ترتین" بود یعنی مرحله سیزدهم کامل کرده و الان مرحله چهاردهم
+                    if (currentLevel.Equals("Thirteen"))
+                    {
+                        var q = from a in _db.TblPagesSequences
+                                where a.Status == true
+                                select a.Fourteen;
+
+                        var number = q.FirstOrDefault();
+
+                        return RedirectToPage("Level" + number + "/Index");
+                    }
+
+                    //اگه "فورتین" بود یعنی مرحله چهاردهم کامل کرده و الان مرحله پانزدهم
+                    if (currentLevel.Equals("Fourteen"))
+                    {
+                        var q = from a in _db.TblPagesSequences
+                                where a.Status == true
+                                select a.Fifteen;
+
+                        var number = q.FirstOrDefault();
+
+                        return RedirectToPage("Level" + number + "/Index");
+                    }
+
+                    //اگه "فیفتیین" بود یعنی مرحله پونزدهم کامل کرده و الان مرحله شانزدهم
+                    if (currentLevel.Equals("Fifteen"))
+                    {
+                        var q = from a in _db.TblPagesSequences
+                                where a.Status == true
+                                select a.Sixteen;
+
+                        var number = q.FirstOrDefault();
+
+                        return RedirectToPage("Level" + number + "/Index");
+                    }
+
                     return RedirectToPage("Level/Index");
                 }
 

@@ -44,6 +44,18 @@ namespace NewEmploymentSystem.Utilities
                 case "Eleven":
                     NextLevel = "Twelve";
                     break;
+                case "Twelve":
+                    NextLevel = "Thirteen";
+                    break;
+                case "Thirteen":
+                    NextLevel = "Fourteen";
+                    break;
+                case "Fourteen":
+                    NextLevel = "Fifteen";
+                    break;
+                case "Fifteen":
+                    NextLevel = "Sixteen";
+                    break;
                 default:
                     NextLevel = currentLevel;
                     break;
@@ -92,6 +104,14 @@ namespace NewEmploymentSystem.Utilities
                     return 11;
                 case "Twelve":
                     return 12;
+                case "Thirteen":
+                    return 13;
+                case "Fourteen":
+                    return 14;
+                case "Fifteen":
+                    return 15;
+                case "Sixteen":
+                    return 16;
                 default:
                     return 0;
             }

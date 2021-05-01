@@ -37,3 +37,24 @@ NULL</br>
 هر ترتیبی که انتخاب شود یا اکتیو باشد در پایان مراحل ثبت نام کاربر با توجه به اطلاعاتی که در جدول </br>
 PageTimeLog</br>
 برای هر صفحه ذخیره شده است مدت زمان ثبت نام را محاسبه میکند و اگر از مقدار قبلی که در جدول موجود است کمتر بود آن را به مقدار جدید تغییر میدهد و رکورد صفحه تغییر میکند.
+
+#جداول
+در زیر لیستی از جداول استفاده شده در برنامه توضیح داده شده است:</br>
+TblPagesSequence => ترتیب نمایش مراحل ثبت نام برای کاربر</br>
+TblPageTimeLog => ذخیره مدت زمانی که طول کشیده کاربر مرحله را تکمیل کند</br>
+TblIpLog => آی پی کاربران</br>
+TblLink => لینک هایی که برای کاربران ارسال میشود در این جدول ذخیره میشوند</br>
+TblUser => ذخیره یوزر و پسورد کاربران برای ورود مجدد به سایت</br>
+(TblSmsReceived, TblSmsSent) => مربوط به برنامه مدیریت اس ام اس برای ارسال لینک ثبت نام به کاربران</br>
+</br>
+سایر جداول برای صفحات ثبت نام میباشد:</br>
+(PayDiploma, PayEducation, TblCustomerDegree)</br>
+(TblMilitary, TblMilitaryOrganization, TblUserMilitary)</br>
+(TblLeaveJob, TblJobTamin, TblWorkExperience, TblWorkExperienceLeaveJobDtl)</br>
+(TblJob, TblUserJob)</br>
+(TblSkill, TblUserSkill)</br>
+(TblEmergencyCall)</br>
+(TblGeneralRecord)</br>
+(TblHowFind)</br>
+(TblMedicalRecord)</br>
+(TblPrimaryInformation)</br>

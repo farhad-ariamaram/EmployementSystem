@@ -13,6 +13,7 @@ namespace NewEmploymentSystem.Models
         public int? JobsId { get; set; }
         public string Description { get; set; }
         public string RequestMoney { get; set; }
+        public string WhatKnowAbout { get; set; }
 
         public virtual TblJob Jobs { get; set; }
         public virtual TblUser User { get; set; }

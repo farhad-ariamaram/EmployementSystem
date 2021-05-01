@@ -17,7 +17,10 @@ namespace NewEmploymentSystem.Models
             TblMedicalRecords = new HashSet<TblMedicalRecord>();
             TblPageTimeLogs = new HashSet<TblPageTimeLog>();
             TblPrimaryInformations = new HashSet<TblPrimaryInformation>();
+            TblUserCompilations = new HashSet<TblUserCompilation>();
+            TblUserCreativities = new HashSet<TblUserCreativity>();
             TblUserJobs = new HashSet<TblUserJob>();
+            TblUserLanguages = new HashSet<TblUserLanguage>();
             TblUserMilitaries = new HashSet<TblUserMilitary>();
             TblUserSkills = new HashSet<TblUserSkill>();
             TblWorkExperiences = new HashSet<TblWorkExperience>();
@@ -40,7 +43,10 @@ namespace NewEmploymentSystem.Models
         public virtual ICollection<TblMedicalRecord> TblMedicalRecords { get; set; }
         public virtual ICollection<TblPageTimeLog> TblPageTimeLogs { get; set; }
         public virtual ICollection<TblPrimaryInformation> TblPrimaryInformations { get; set; }
+        public virtual ICollection<TblUserCompilation> TblUserCompilations { get; set; }
+        public virtual ICollection<TblUserCreativity> TblUserCreativities { get; set; }
         public virtual ICollection<TblUserJob> TblUserJobs { get; set; }
+        public virtual ICollection<TblUserLanguage> TblUserLanguages { get; set; }
         public virtual ICollection<TblUserMilitary> TblUserMilitaries { get; set; }
         public virtual ICollection<TblUserSkill> TblUserSkills { get; set; }
         public virtual ICollection<TblWorkExperience> TblWorkExperiences { get; set; }

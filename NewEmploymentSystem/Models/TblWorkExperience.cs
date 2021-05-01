@@ -27,12 +27,16 @@ namespace NewEmploymentSystem.Models
         public string FldLateSalary { get; set; }
         public string FldReasonsToLeaveJob { get; set; }
         public int? FldLeaveJobId { get; set; }
-        public long? FldAmountOfDailyInsurance { get; set; }
+        public string FldAmountOfDailyInsurance { get; set; }
         public string FldWorkTime { get; set; }
         public string FldWorkDay { get; set; }
         public string FldUnitName { get; set; }
         public string UserId { get; set; }
         public bool? IsWorking { get; set; }
+        public bool HasInsurance { get; set; }
+        public string InsuranceNo { get; set; }
+        public string WhyWantChangeJob { get; set; }
+        public string PreviousJobAchievements { get; set; }
 
         public virtual TblLeaveJob FldLeaveJob { get; set; }
         public virtual TblJobTamin FldTaminJob { get; set; }

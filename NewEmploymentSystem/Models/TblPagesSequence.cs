@@ -28,6 +28,9 @@ namespace NewEmploymentSystem.Models
         public int? Eleven { get; set; }
         public int? Twelve { get; set; }
         public int? Thirteen { get; set; }
+        public int? Fourteen { get; set; }
+        public int? Fifteen { get; set; }
+        public int? Sixteen { get; set; }
 
         public virtual ICollection<TblUser> TblUsers { get; set; }
     }

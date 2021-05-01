@@ -19,6 +19,8 @@ namespace NewEmploymentSystem.Models
 
         public virtual DbSet<PayDiploma> PayDiplomas { get; set; }
         public virtual DbSet<PayEducation> PayEducations { get; set; }
+        public virtual DbSet<TblCompilationType> TblCompilationTypes { get; set; }
+        public virtual DbSet<TblCreativityType> TblCreativityTypes { get; set; }
         public virtual DbSet<TblCustomerDegree> TblCustomerDegrees { get; set; }
         public virtual DbSet<TblEmergencyCall> TblEmergencyCalls { get; set; }
         public virtual DbSet<TblGeneralRecord> TblGeneralRecords { get; set; }
@@ -26,6 +28,7 @@ namespace NewEmploymentSystem.Models
         public virtual DbSet<TblIpLog> TblIpLogs { get; set; }
         public virtual DbSet<TblJob> TblJobs { get; set; }
         public virtual DbSet<TblJobTamin> TblJobTamins { get; set; }
+        public virtual DbSet<TblLanguageType> TblLanguageTypes { get; set; }
         public virtual DbSet<TblLeaveJob> TblLeaveJobs { get; set; }
         public virtual DbSet<TblLink> TblLinks { get; set; }
         public virtual DbSet<TblMedicalRecord> TblMedicalRecords { get; set; }
@@ -38,7 +41,10 @@ namespace NewEmploymentSystem.Models
         public virtual DbSet<TblSmsReceived> TblSmsReceiveds { get; set; }
         public virtual DbSet<TblSmsSent> TblSmsSents { get; set; }
         public virtual DbSet<TblUser> TblUsers { get; set; }
+        public virtual DbSet<TblUserCompilation> TblUserCompilations { get; set; }
+        public virtual DbSet<TblUserCreativity> TblUserCreativities { get; set; }
         public virtual DbSet<TblUserJob> TblUserJobs { get; set; }
+        public virtual DbSet<TblUserLanguage> TblUserLanguages { get; set; }
         public virtual DbSet<TblUserMilitary> TblUserMilitaries { get; set; }
         public virtual DbSet<TblUserSkill> TblUserSkills { get; set; }
         public virtual DbSet<TblWorkExperience> TblWorkExperiences { get; set; }
@@ -48,7 +54,8 @@ namespace NewEmploymentSystem.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("server=.;database=EmployDB;User Id=sa;Password=S33@||;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=.;Database=EmployDB;Trusted_Connection=True;");
             }
         }
 
@@ -92,6 +99,20 @@ namespace NewEmploymentSystem.Models
                     .IsUnicode(false)
                     .HasColumnName("Education_Name")
                     .HasDefaultValueSql("('')");
+            });
+
+            modelBuilder.Entity<TblCompilationType>(entity =>
+            {
+                entity.ToTable("Tbl_CompilationType");
+
+                entity.Property(e => e.CompilationType).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<TblCreativityType>(entity =>
+            {
+                entity.ToTable("Tbl_CreativityType");
+
+                entity.Property(e => e.CreativityType).HasMaxLength(50);
             });
 
             modelBuilder.Entity<TblCustomerDegree>(entity =>
@@ -284,6 +305,13 @@ namespace NewEmploymentSystem.Models
                     .HasColumnName("Fld_TaminJobStatusDate");
             });
 
+            modelBuilder.Entity<TblLanguageType>(entity =>
+            {
+                entity.ToTable("Tbl_LanguageType");
+
+                entity.Property(e => e.LanguageType).HasMaxLength(50);
+            });
+
             modelBuilder.Entity<TblLeaveJob>(entity =>
             {
                 entity.HasKey(e => e.FldLeaveJobId);
@@ -461,6 +489,66 @@ namespace NewEmploymentSystem.Models
                     .HasConstraintName("FK_Tbl_User_Tbl_PagesSequence");
             });
 
+            modelBuilder.Entity<TblUserCompilation>(entity =>
+            {
+                entity.ToTable("Tbl_UserCompilation");
+
+                entity.Property(e => e.Author).HasMaxLength(50);
+
+                entity.Property(e => e.CompilationTypeId).HasColumnName("CompilationType_Id");
+
+                entity.Property(e => e.Date).HasColumnType("datetime");
+
+                entity.Property(e => e.Description).HasMaxLength(1000);
+
+                entity.Property(e => e.Explanation).HasMaxLength(1000);
+
+                entity.Property(e => e.Title).HasMaxLength(50);
+
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(50)
+                    .HasColumnName("User_Id");
+
+                entity.HasOne(d => d.CompilationType)
+                    .WithMany(p => p.TblUserCompilations)
+                    .HasForeignKey(d => d.CompilationTypeId)
+                    .HasConstraintName("FK_Tbl_UserCompilations_Tbl_CompilationType");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.TblUserCompilations)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Tbl_UserCompilations_Tbl_User");
+            });
+
+            modelBuilder.Entity<TblUserCreativity>(entity =>
+            {
+                entity.ToTable("Tbl_UserCreativity");
+
+                entity.Property(e => e.CreativityTypeId).HasColumnName("CreativityType_Id");
+
+                entity.Property(e => e.Date).HasColumnType("datetime");
+
+                entity.Property(e => e.Description).HasMaxLength(1000);
+
+                entity.Property(e => e.Explanation).HasMaxLength(1000);
+
+                entity.Property(e => e.Title).HasMaxLength(50);
+
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(50)
+                    .HasColumnName("User_Id");
+
+                entity.HasOne(d => d.CreativityType)
+                    .WithMany(p => p.TblUserCreativities)
+                    .HasForeignKey(d => d.CreativityTypeId)
+                    .HasConstraintName("FK_Tbl_UserCreativity_Tbl_CreativityType");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.TblUserCreativities)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Tbl_UserCreativity_Tbl_User");
+            });
+
             modelBuilder.Entity<TblUserJob>(entity =>
             {
                 entity.ToTable("Tbl_UserJob");
@@ -479,6 +567,8 @@ namespace NewEmploymentSystem.Models
                     .HasMaxLength(50)
                     .HasColumnName("User_Id");
 
+                entity.Property(e => e.WhatKnowAbout).HasMaxLength(1000);
+
                 entity.HasOne(d => d.Jobs)
                     .WithMany(p => p.TblUserJobs)
                     .HasForeignKey(d => d.JobsId)
@@ -488,6 +578,27 @@ namespace NewEmploymentSystem.Models
                     .WithMany(p => p.TblUserJobs)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_Tbl_UserJob_Tbl_User");
+            });
+
+            modelBuilder.Entity<TblUserLanguage>(entity =>
+            {
+                entity.ToTable("Tbl_UserLanguage");
+
+                entity.Property(e => e.LanguageTypeId).HasColumnName("LanguageType_Id");
+
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(50)
+                    .HasColumnName("User_Id");
+
+                entity.HasOne(d => d.LanguageType)
+                    .WithMany(p => p.TblUserLanguages)
+                    .HasForeignKey(d => d.LanguageTypeId)
+                    .HasConstraintName("FK_Tbl_UserLanguage_Tbl_LanguageType");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.TblUserLanguages)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Tbl_UserLanguage_Tbl_User");
             });
 
             modelBuilder.Entity<TblUserMilitary>(entity =>
@@ -574,6 +685,7 @@ namespace NewEmploymentSystem.Models
                 entity.Property(e => e.FldWorkExperienceId).HasColumnName("Fld_WorkExperienceID");
 
                 entity.Property(e => e.FldAmountOfDailyInsurance)
+                    .HasMaxLength(50)
                     .HasColumnName("Fld_AmountOfDailyInsurance")
                     .HasDefaultValueSql("((0))");
 
@@ -637,9 +749,15 @@ namespace NewEmploymentSystem.Models
                     .HasMaxLength(100)
                     .HasColumnName("Fld_WorkTime");
 
+                entity.Property(e => e.InsuranceNo).HasMaxLength(50);
+
+                entity.Property(e => e.PreviousJobAchievements).HasMaxLength(1000);
+
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
                     .HasColumnName("User_Id");
+
+                entity.Property(e => e.WhyWantChangeJob).HasMaxLength(1000);
 
                 entity.HasOne(d => d.FldLeaveJob)
                     .WithMany(p => p.TblWorkExperiences)

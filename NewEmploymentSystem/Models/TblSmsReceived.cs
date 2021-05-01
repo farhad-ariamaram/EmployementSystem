@@ -11,5 +11,6 @@ namespace NewEmploymentSystem.Models
         public string Phone { get; set; }
         public DateTime? Date { get; set; }
         public string Message { get; set; }
+        public bool? IsVisit { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace NewEmploymentSystem.Pages.Level13
                 return RedirectToPage("../Index");
             }
 
-            ViewData["CreativityTypeId"] = new SelectList(_db.TblCreativityType, "Id", "CreativityType");
+            ViewData["CreativityTypeId"] = new SelectList(_db.TblCreativityTypes, "Id", "CreativityType");
 
             return Page();
         }

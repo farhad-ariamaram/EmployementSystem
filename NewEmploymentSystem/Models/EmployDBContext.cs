@@ -584,6 +584,8 @@ namespace NewEmploymentSystem.Models
             {
                 entity.ToTable("Tbl_UserLanguage");
 
+                entity.Property(e => e.Description).HasMaxLength(1000);
+
                 entity.Property(e => e.LanguageTypeId).HasColumnName("LanguageType_Id");
 
                 entity.Property(e => e.UserId)

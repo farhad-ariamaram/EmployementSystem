@@ -1,0 +1,36 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level14.IndexModel
+@{
+    ViewData["Title"] = "مرحله ثبت تألیفات";
+}
+
+<partial name="_Steps" model="@ViewData["Level"]" />
+
+<script>
+    localStorage.removeItem("gd1");
+</script>
+
+<form class="contact3-form validate-form" method="post">
+    <span class="contact3-form-title">
+        <i class="fa fa-2x fa-newspaper-o"></i>
+        <br />
+        مرحله ثبت تألیفات
+    </span>
+    <span> تألیفات اضافه شده:</span>
+    <ul class="list-group">
+        @foreach (var item in Model.tblUserCompilation)
+        {
+            <li class="list-group-item">@item.Title</li>
+        }
+    </ul>
+
+    <div class="container-contact3-form-btn">
+        <a class="contact3-form-btn" asp-page="AddCompilation">افزودن جدید</a>
+        <div class="container-contact3-form-btn">
+            <button type="submit" class="contact3-form-btn">
+                سوالات بعدی
+            </button>
+        </div>
+    </div>
+
+</form>

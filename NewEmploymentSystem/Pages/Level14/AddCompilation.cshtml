@@ -1,0 +1,85 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level14.AddCompilationModel
+@{
+    ViewData["Title"] = "مرحله ثبت تألیفات";
+}
+
+<form name="myForm" onsubmit="return validateForm()" method="post" class="contact3-form">
+    <span class="contact3-form-title">
+        <i class="fa fa-2x fa-newspaper-o"></i>
+        <br />
+        مرحله ثبت تألیفات
+    </span>
+
+    <div class="wrap-input3 input3-select">
+        <div>
+            <span class="placeholderEx">نوع تألیف خود را انتخاب کنید</span>
+            <select asp-for="tblUserCompilation.CompilationTypeId" asp-items="ViewBag.CompilationTypeId" class="selection-2"></select>
+        </div>
+    </div>
+
+    <div class="wrap-input3">
+        <span asp-validation-for="tblUserCompilation.Title"></span>
+        <input asp-for="tblUserCompilation.Title" class="input3" placeholder="عنوان تألیف">
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="wrap-input3">
+        <span asp-validation-for="tblUserCompilation.Author"></span>
+        <input asp-for="tblUserCompilation.Author" class="input3" placeholder="نام ناشر">
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="wrap-input3">
+        <span asp-validation-for="tblUserCompilation.Explanation"></span>
+        <textarea asp-for="tblUserCompilation.Explanation" class="input3" placeholder="شرح تألیف"></textarea>
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="wrap-input3 validate-input" data-validate="این فیلد اجباری است">
+        <span class="placeholderEx">تاریخ ثبت و یا ارائه</span>
+        <span style="display:none" class="field-validation-error" id="pcal1error">این فیلد اجباری است</span>
+        <input type="text" name="GetDate" class="pdate" id="pcal1" readonly>
+    </div>
+
+    <div class="textwhite">
+        <span class="placeholderEx">توضیحات بیشتر</span>
+        <input id="moredescheckbox" type="checkbox" onchange="$('#moredes').toggle()" />
+    </div>
+    <br />
+
+    <div id="moredes" class="wrap-input3" style="display:none">
+        <span asp-validation-for="tblUserCompilation.Description"></span>
+        <textarea class="input3" asp-for="tblUserCompilation.Description" placeholder="توضیحات"></textarea>
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="container-contact3-form-btn">
+        <button type="submit" class="contact3-form-btn">
+            ثبت
+        </button>
+    </div>
+
+</form>
+
+<script>
+    document.forms["myForm"]["GetDate"].value = localStorage.getItem('gd1');
+
+    function validateForm() {
+        localStorage.setItem("gd1", document.forms["myForm"]["GetDate"].value);
+
+        var gd = document.forms["myForm"]["GetDate"].value;
+        if (gd == "") {
+            $("#pcal1error").css("display", "block");
+            return false;
+        } else {
+            $("#pcal1error").css("display", "none");
+        }
+    }
+
+    function Load() {
+        $(".pcalBtn").click(function () {
+            $("#pcal1error").hide();
+        });
+    }
+</script>

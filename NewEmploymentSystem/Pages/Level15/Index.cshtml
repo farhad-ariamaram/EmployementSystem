@@ -1,0 +1,32 @@
+﻿@page
+@model NewEmploymentSystem.Pages.Level15.IndexModel
+@{
+    ViewData["Title"] = "مرحله ثبت مهارت زبان های خارجی";
+}
+
+<partial name="_Steps" model="@ViewData["Level"]" />
+
+<form class="contact3-form validate-form" method="post">
+    <span class="contact3-form-title">
+        <i class="fa fa-2x fa-language"></i>
+        <br />
+        مرحله ثبت مهارت زبان های خارجی
+    </span>
+    <span> زبان های اضافه شده:</span>
+    <ul class="list-group">
+        @foreach (var item in Model.tblUserLanguage)
+        {
+            <li class="list-group-item">@item.LanguageType.LanguageType</li>
+        }
+    </ul>
+
+    <div class="container-contact3-form-btn">
+        <a class="contact3-form-btn" asp-page="AddLanguage">افزودن جدید</a>
+        <div class="container-contact3-form-btn">
+            <button type="submit" class="contact3-form-btn">
+                سوالات بعدی
+            </button>
+        </div>
+    </div>
+
+</form>

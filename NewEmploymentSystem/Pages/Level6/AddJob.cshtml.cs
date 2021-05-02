@@ -31,11 +31,27 @@ namespace NewEmploymentSystem.Pages.Level6
                 return RedirectToPage("../Index");
             }
 
-            ViewData["JobId"] = new SelectList(_db.TblJobs
-                                                .Where(a => a.IsActive == true)
-                                                .Where(a => a.StartDate < DateTime.Now)
-                                                .Where(a => a.EndDate > DateTime.Now)
-                                                , "Id", "JobTitle");
+            var UserGender = _db.TblPrimaryInformations.Where(a => a.UserId.Equals(uid)).Select(a => a.Gender).FirstOrDefault();
+            if (UserGender.Equals("آقا"))
+            {
+                ViewData["JobId"] = new SelectList(_db.TblJobs
+                                    .Where(a => a.IsActive == true)
+                                    .Where(a => a.StartDate < DateTime.Now)
+                                    .Where(a => a.EndDate > DateTime.Now)
+                                    .Where(a => a.NeedMan == true)
+                                    , "Id", "JobTitle");
+            }
+            else
+            {
+                ViewData["JobId"] = new SelectList(_db.TblJobs
+                                    .Where(a => a.IsActive == true)
+                                    .Where(a => a.StartDate < DateTime.Now)
+                                    .Where(a => a.EndDate > DateTime.Now)
+                                    .Where(a => a.NeedWoman == true)
+                                    , "Id", "JobTitle");
+            }
+
+
             return Page();
         }
 
@@ -43,7 +59,26 @@ namespace NewEmploymentSystem.Pages.Level6
         {
             if (!ModelState.IsValid)
             {
-                ViewData["JobId"] = new SelectList(_db.TblJobs, "Id", "JobTitle");
+                string uid = HttpContext.Session.GetString("uid");
+                var UserGender = _db.TblPrimaryInformations.Where(a => a.UserId.Equals(uid)).Select(a => a.Gender).FirstOrDefault();
+                if (UserGender.Equals("آقا"))
+                {
+                    ViewData["JobId"] = new SelectList(_db.TblJobs
+                                        .Where(a => a.IsActive == true)
+                                        .Where(a => a.StartDate < DateTime.Now)
+                                        .Where(a => a.EndDate > DateTime.Now)
+                                        .Where(a => a.NeedMan == true)
+                                        , "Id", "JobTitle");
+                }
+                else
+                {
+                    ViewData["JobId"] = new SelectList(_db.TblJobs
+                                        .Where(a => a.IsActive == true)
+                                        .Where(a => a.StartDate < DateTime.Now)
+                                        .Where(a => a.EndDate > DateTime.Now)
+                                        .Where(a => a.NeedWoman == true)
+                                        , "Id", "JobTitle");
+                }
                 return Page();
             }
             userJob.UserId = HttpContext.Session.GetString("uid");

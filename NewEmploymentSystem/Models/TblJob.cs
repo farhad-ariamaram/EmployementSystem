@@ -17,6 +17,8 @@ namespace NewEmploymentSystem.Models
         public DateTime? EndDate { get; set; }
         public bool? IsActive { get; set; }
         public string JobTitle { get; set; }
+        public bool NeedMan { get; set; }
+        public bool NeedWoman { get; set; }
 
         public virtual ICollection<TblUserJob> TblUserJobs { get; set; }
     }

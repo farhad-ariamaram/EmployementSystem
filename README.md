@@ -52,17 +52,7 @@ TblLink => لینک هایی که برای کاربران ارسال میشود 
 TblUser => ذخیره یوزر و پسورد کاربران برای ورود مجدد به سایت</br>
 (TblSmsReceived, TblSmsSent) => مربوط به برنامه مدیریت اس ام اس برای ارسال لینک ثبت نام به کاربران</br>
 </br>
-سایر جداول برای صفحات ثبت نام میباشد:</br>
-(PayDiploma, PayEducation, TblCustomerDegree)</br>
-(TblMilitary, TblMilitaryOrganization, TblUserMilitary)</br>
-(TblLeaveJob, TblJobTamin, TblWorkExperience, TblWorkExperienceLeaveJobDtl)</br>
-(TblJob, TblUserJob)</br>
-(TblSkill, TblUserSkill)</br>
-(TblEmergencyCall)</br>
-(TblGeneralRecord)</br>
-(TblHowFind)</br>
-(TblMedicalRecord)</br>
-(TblPrimaryInformation)</br>
+سایر جداول برای صفحات ثبت نام میباشد</br>
 
 # مراحل کار
 این سیستم شامل 4 برنامه مجزاست که این برنامه یک جزء از آن است. برنامه ها شامل</br>

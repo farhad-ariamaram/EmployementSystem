@@ -18,6 +18,8 @@ namespace NewEmploymentSystem.Models
         public int? ChildrenNo { get; set; }
         public string Marital { get; set; }
         public int? Tutelage { get; set; }
+        public string PostalCode { get; set; }
+        public string TrackNo { get; set; }
 
         public virtual TblUser User { get; set; }
     }

@@ -426,6 +426,10 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.PhoneNo).HasMaxLength(20);
 
+                entity.Property(e => e.PostalCode).HasMaxLength(20);
+
+                entity.Property(e => e.TrackNo).HasMaxLength(50);
+
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
                     .HasColumnName("User_Id");

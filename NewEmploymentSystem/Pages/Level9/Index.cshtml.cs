@@ -36,12 +36,12 @@ namespace NewEmploymentSystem.Pages.Level9
             ViewData["Level"] = Utility.leveltoNumber(_db.TblUsers.Find(uid).CurrentLevel);
 
             //find user with SESSION['uid']
-            var queryyy = from a in _db.TblUsers
-                          where a.Id == uid
-                          select a;
+            var queryyy = (from a in _db.TblPrimaryInformations
+                          where a.UserId.Equals(uid)
+                          select a).FirstOrDefault();
 
             //check if already has track id redirect to "End"
-            if (queryyy.FirstOrDefault().TrackNo != null)
+            if (queryyy.TrackNo != null)
             {
                 return RedirectToPage("../Index");
             }
@@ -66,15 +66,15 @@ namespace NewEmploymentSystem.Pages.Level9
             }
 
             //set user postal code 
-            _db.TblUsers.Find(uid).PostalCode = postal.postcode;
+            _db.TblPrimaryInformations.Where(a=> a.UserId.Equals(uid)).FirstOrDefault().PostalCode = postal.postcode;
 
             //generate track id and set for user
             string key = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 6);
-            while (_db.TblUsers.Any(s => s.TrackNo == key))
+            while (_db.TblPrimaryInformations.Any(s => s.TrackNo == key))
             {
                 key = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 6);
             }
-            _db.TblUsers.Find(uid).TrackNo = key;
+            _db.TblPrimaryInformations.Where(a => a.UserId.Equals(uid)).FirstOrDefault().TrackNo = key;
             _db.SaveChanges();
 
             //Time Logging

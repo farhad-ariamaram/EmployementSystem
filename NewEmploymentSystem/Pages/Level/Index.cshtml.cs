@@ -16,7 +16,6 @@ namespace NewEmploymentSystem.Pages.Level
             _db = db;
         }
 
-        [BindProperty]
         public string Trackcode { get; set; }
 
         public IActionResult OnGet()
@@ -30,7 +29,7 @@ namespace NewEmploymentSystem.Pages.Level
             }
 
             //get user track id for display
-            Trackcode = _db.TblUsers.Find(uid).TrackNo;
+            Trackcode = _db.TblPrimaryInformations.Where(a => a.UserId.Equals(uid)).FirstOrDefault().TrackNo;
 
             //بروزرسانی رکورد سیستم جاری در صورت بهبود
             var q = (from a in _db.TblPageTimeLogs

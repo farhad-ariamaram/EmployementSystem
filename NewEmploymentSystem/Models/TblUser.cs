@@ -31,8 +31,6 @@ namespace NewEmploymentSystem.Models
         public string Password { get; set; }
         public string CurrentLevel { get; set; }
         public long? PagesSequenceId { get; set; }
-        public string PostalCode { get; set; }
-        public string TrackNo { get; set; }
 
         public virtual TblPagesSequence PagesSequence { get; set; }
         public virtual ICollection<TblCustomerDegree> TblCustomerDegrees { get; set; }

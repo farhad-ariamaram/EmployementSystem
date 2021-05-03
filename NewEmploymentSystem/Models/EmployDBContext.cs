@@ -54,7 +54,7 @@ namespace NewEmploymentSystem.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("server=.;database=EmployDB;User Id=sa;Password=S33@||;");
+                optionsBuilder.UseSqlServer("Server=.;Database=EmployDB;Trusted_Connection=True;");
             }
         }
 
@@ -479,10 +479,6 @@ namespace NewEmploymentSystem.Models
                 entity.Property(e => e.PagesSequenceId).HasColumnName("PagesSequence_Id");
 
                 entity.Property(e => e.Password).HasMaxLength(50);
-
-                entity.Property(e => e.PostalCode).HasMaxLength(20);
-
-                entity.Property(e => e.TrackNo).HasMaxLength(50);
 
                 entity.Property(e => e.Username).HasMaxLength(50);
 

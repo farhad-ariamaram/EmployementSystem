@@ -29,14 +29,27 @@
         </ul>
     }
 
-    <div class="container-contact3-form-btn">
-        <a class="contact3-form-btn" asp-page="AddExperienceField">افزودن جدید</a>
+<div class="container-contact3-form-btn">
+    @if (Model.workExperiencesList.Any())
+    {
+        <a class="contact3-form-btn" asp-page="AddExperienceField">افزودن سابقه شغلی دیگر</a>
         <div class="container-contact3-form-btn">
             <button type="submit" class="contact3-form-btn">
-                سوالات بعدی
+                سابقه شغلی دیگری ندارم
             </button>
         </div>
-    </div>
+    }
+    else
+    {
+        <a class="contact3-form-btn" asp-page="AddExperienceField">افزودن سابقه شغلی جدید</a>
+        <div class="container-contact3-form-btn">
+            <button type="submit" class="contact3-form-btn">
+                سابقه شغلی ندارم
+            </button>
+        </div>
+    }
+
+</div>
 
 </form>
 

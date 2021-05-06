@@ -28,14 +28,27 @@
         </ul>
     }
 
-    <div class="container-contact3-form-btn">
-        <a class="contact3-form-btn" asp-page="AddSkills">افزودن جدید</a>
+
+<div class="container-contact3-form-btn">
+    @if (Model.tblUserSkill.Any())
+    {
+        <a class="contact3-form-btn" asp-page="AddSkills">افزودن مهارت</a>
         <div class="container-contact3-form-btn">
             <button type="submit" class="contact3-form-btn">
-                سوالات بعدی
+                مهارتی ندارم
             </button>
         </div>
-    </div>
+    }
+    else
+    {
+        <a class="contact3-form-btn" asp-page="AddSkills">افزودن مهارت جدید</a>
+        <div class="container-contact3-form-btn">
+            <button type="submit" class="contact3-form-btn">
+                مهارت دیگری ندارم
+            </button>
+        </div>
+    }
+</div>
 
 </form>
 

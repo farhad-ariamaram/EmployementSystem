@@ -29,13 +29,26 @@
     }
 
 
-    <div class="container-contact3-form-btn">
-        <a class="contact3-form-btn" asp-page="AddCompilation">افزودن جدید</a>
+<div class="container-contact3-form-btn">
+    @if (Model.tblUserCompilation.Any())
+    {
+    <a class="contact3-form-btn" asp-page="AddCompilation">افزودن تألیف</a>
         <div class="container-contact3-form-btn">
             <button type="submit" class="contact3-form-btn">
-                سوالات بعدی
+                تألیفی ندارم
             </button>
         </div>
-    </div>
+    }
+    else
+    {
+<a class="contact3-form-btn" asp-page="AddCompilation">افزودن تألیف جدید</a>
+        <div class="container-contact3-form-btn">
+            <button type="submit" class="contact3-form-btn">
+                تألیف دیگری ندارم
+            </button>
+        </div>
+    }
+
+</div>
 
 </form>

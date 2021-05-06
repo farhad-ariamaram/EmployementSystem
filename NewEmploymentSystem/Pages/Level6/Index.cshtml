@@ -24,15 +24,22 @@
         </ul>
     }
 
-    <div class="container-contact3-form-btn">
+<div class="container-contact3-form-btn">
+    @if (Model.userJob.Any())
+    {
+        <a class="contact3-form-btn" asp-page="AddJob">افزودن شغل جدید</a>
+    }
+    else
+    {
+        <a class="contact3-form-btn" asp-page="AddJob">افزودن شغل</a>
+    }
 
-        <a class="contact3-form-btn" asp-page="AddJob">افزودن جدید</a>
 
-        @if (Model.userJob.Any())
-        {
-            <button type="submit" class="contact3-form-btn mt-1">سوالات بعدی</button>
-        }
+    @if (Model.userJob.Any())
+    {
+        <button type="submit" class="contact3-form-btn mt-1">شغل دیگری نمیخواهم</button>
+    }
 
-    </div>
+</div>
 
 </form>

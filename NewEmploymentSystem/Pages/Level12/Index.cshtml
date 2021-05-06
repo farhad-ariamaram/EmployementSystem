@@ -25,13 +25,26 @@
     }
 
 
-    <div class="container-contact3-form-btn">
-        <a class="contact3-form-btn" asp-page="AddGeneralRecord">افزودن جدید</a>
+<div class="container-contact3-form-btn">
+    @if (Model.tblGeneralRecord.Any())
+    {
+        <a class="contact3-form-btn" asp-page="AddGeneralRecord">افزودن سابقه</a>
         <div class="container-contact3-form-btn">
             <button type="submit" class="contact3-form-btn">
-                سوالات بعدی
+                سابقه ندارم
             </button>
         </div>
-    </div>
+    }
+    else
+    {
+        <a class="contact3-form-btn" asp-page="AddGeneralRecord">افزودن سابقه جدید</a>
+        <div class="container-contact3-form-btn">
+            <button type="submit" class="contact3-form-btn">
+                سابقه دیگری ندارم
+            </button>
+        </div>
+    }
+
+</div>
 
 </form>

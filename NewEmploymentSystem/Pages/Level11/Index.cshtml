@@ -28,12 +28,20 @@
 
 
     <div class="container-contact3-form-btn">
-        <a class="contact3-form-btn" asp-page="AddEmergency">افزودن جدید</a>
+
+        @if (Model.tblEmergencyCall.Any())
+        {
+            <a class="contact3-form-btn" asp-page="AddEmergency">افزودن فرد</a>
+        }
+        else
+        {
+            <a class="contact3-form-btn" asp-page="AddEmergency">افزودن فرد جدید</a>
+        }
         <div class="container-contact3-form-btn">
             @if (Model.NumberOfAdds > 1)
             {
                 <button type="submit" class="contact3-form-btn">
-                    سوالات بعدی
+                    فرد دیگری اضافه نمیکنم
                 </button>
             }
         </div>

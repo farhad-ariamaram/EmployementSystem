@@ -12,13 +12,17 @@
         <br />
         مرحله ثبت شغل درخواستی
     </span>
-    <span>شغل های اضافه شده:</span>
-    <ul class="list-group">
-        @foreach (var item in Model.userJob)
-        {
-            <li class="list-group-item">@item.JobTitle</li>
-        }
-    </ul>
+
+    @if (Model.userJob.Any())
+    {
+        <span>شغل های اضافه شده:</span>
+        <ul class="list-group">
+            @foreach (var item in Model.userJob)
+            {
+                <li class="list-group-item">@item.JobTitle</li>
+            }
+        </ul>
+    }
 
     <div class="container-contact3-form-btn">
 

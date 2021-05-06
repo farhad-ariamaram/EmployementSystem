@@ -58,7 +58,7 @@
 
         <div class="wrap-input3 ">
             <span asp-validation-for="tblWorkExperience.FldContactNumberOfCompany"></span>
-            <input type="number" asp-for="tblWorkExperience.FldContactNumberOfCompany" class="input3" placeholder="شماره تلفن شرکت">
+            <input type="number" oninput="javascript: if (this.value.length > 11) this.value = this.value.slice(0, 11);" asp-for="tblWorkExperience.FldContactNumberOfCompany" class="input3" placeholder="شماره تلفن شرکت">
             <span class="focus-input3"></span>
         </div>
 
@@ -92,13 +92,13 @@
     <section id="section4">
         <div class="wrap-input3 ">
             <span asp-validation-for="tblWorkExperience.FldEarlySalary"></span>
-            <input type="number" asp-for="tblWorkExperience.FldEarlySalary" class="input3" placeholder="(ریال)مقدار اولین حقوق دریافتی">
+            <input type="number" asp-for="tblWorkExperience.FldEarlySalary" class="input3" placeholder="مقدار اولین حقوق دریافتی ماهیانه(ریال)">
             <span class="focus-input3"></span>
         </div>
 
         <div class="wrap-input3 ">
             <span asp-validation-for="tblWorkExperience.FldLateSalary"></span>
-            <input type="number" asp-for="tblWorkExperience.FldLateSalary" class="input3" placeholder="مقدار آخرین حقوق دریافتی(ریال)">
+            <input type="number" asp-for="tblWorkExperience.FldLateSalary" class="input3" placeholder="مقدار آخرین حقوق دریافتی ماهیانه(ریال)">
             <span class="focus-input3"></span>
         </div>
 

@@ -16,13 +16,18 @@
         <br />
         مرحله ثبت خلاقیت و نوآوری ها
     </span>
-    <span> خلاقیت و نوآوری های اضافه شده:</span>
-    <ul class="list-group">
-        @foreach (var item in Model.tblUserCreativity)
-        {
-            <li class="list-group-item">@item.Title</li>
-        }
-    </ul>
+
+    @if (Model.tblUserCreativity.Any())
+    {
+        <span> خلاقیت و نوآوری های اضافه شده:</span>
+        <ul class="list-group">
+            @foreach (var item in Model.tblUserCreativity)
+            {
+                <li class="list-group-item">@item.Title</li>
+            }
+        </ul>
+    }
+
 
     <div class="container-contact3-form-btn">
         <a class="contact3-form-btn" asp-page="AddCreativity">افزودن جدید</a>

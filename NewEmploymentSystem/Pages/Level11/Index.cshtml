@@ -12,15 +12,20 @@
         <br />
         مرحله معرفی آشنایان
     </span>
-    <div class="alert alert-info">حداقل باید دو نفر را معرفی کنید</div>
+    <div class="alert alert-info">مشخصات دو نفر از آشنایان خود را وارد کنید تا در صورتی که به شما دسترسی نداشتیم بتوانیم بوسیله ایشان با شما تماس بگیریم</div>
     <br />
-    <span> آشنایان اضافه شده</span>
-    <ul class="list-group">
-        @foreach (var item in Model.tblEmergencyCall)
-        {
-            <li class="list-group-item">@item.FirstName &nbsp; @item.LastName</li>
-        }
-    </ul>
+
+    @if (Model.tblEmergencyCall.Any())
+    {
+        <span> آشنایان اضافه شده</span>
+        <ul class="list-group">
+            @foreach (var item in Model.tblEmergencyCall)
+            {
+                <li class="list-group-item">@item.FirstName &nbsp; @item.LastName</li>
+            }
+        </ul>
+    }
+
 
     <div class="container-contact3-form-btn">
         <a class="contact3-form-btn" asp-page="AddEmergency">افزودن جدید</a>

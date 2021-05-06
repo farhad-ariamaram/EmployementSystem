@@ -12,13 +12,18 @@
         <br />
         مرحله ثبت مهارت زبان های خارجی
     </span>
-    <span> زبان های اضافه شده:</span>
-    <ul class="list-group">
-        @foreach (var item in Model.tblUserLanguage)
-        {
-            <li class="list-group-item">@item.LanguageType.LanguageType</li>
-        }
-    </ul>
+
+    @if (Model.tblUserLanguage.Any())
+    {
+        <span> زبان های اضافه شده:</span>
+        <ul class="list-group">
+            @foreach (var item in Model.tblUserLanguage)
+            {
+                <li class="list-group-item">@item.LanguageType.LanguageType</li>
+            }
+        </ul>
+    }
+
 
     <div class="container-contact3-form-btn">
         <a class="contact3-form-btn" asp-page="AddLanguage">افزودن جدید</a>

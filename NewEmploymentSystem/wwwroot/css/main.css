@@ -139,7 +139,9 @@ iframe {
 }
 
 select {
-    width:100%;
+    width: 100%;
+    width: 400px;
+    text-align-last: center;
 }
 
 
@@ -672,3 +674,4 @@ textarea.input3 {
 .errordescription {
     color: black;
 }
+

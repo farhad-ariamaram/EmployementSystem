@@ -54,7 +54,7 @@ namespace NewEmploymentSystem.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("server=.;database=EmployDB;User Id=sa;Password=S33@||;");
+                optionsBuilder.UseSqlServer("server=.;database=EmployDB;User Id=sa;Password=1;");
             }
         }
 

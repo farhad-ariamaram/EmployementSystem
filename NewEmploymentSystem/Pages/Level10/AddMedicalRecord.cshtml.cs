@@ -42,13 +42,16 @@ namespace NewEmploymentSystem.Pages.Level10
             }
 
             PersianCalendar pc = new PersianCalendar();
+            if (!string.IsNullOrEmpty(Request.Form["EndDate"].ToString()))
+            {
+                string[] EndDate = Request.Form["EndDate"].ToString().Split("/");
+                DateTime ed = new DateTime(int.Parse(EndDate[0]), int.Parse(EndDate[1]), int.Parse(EndDate[2]), pc);
+                tblMedicalRecord.EndDate = ed;
+            }
             string[] startDate = Request.Form["StartDate"].ToString().Split("/");
-            string[] EndDate = Request.Form["EndDate"].ToString().Split("/");
             DateTime sd = new DateTime(int.Parse(startDate[0]), int.Parse(startDate[1]), int.Parse(startDate[2]), pc);
-            DateTime ed = new DateTime(int.Parse(EndDate[0]), int.Parse(EndDate[1]), int.Parse(EndDate[2]), pc);
 
             tblMedicalRecord.StartDate = sd;
-            tblMedicalRecord.EndDate = ed;
             tblMedicalRecord.IsAddict = false;
             tblMedicalRecord.HasProblem = true;
             tblMedicalRecord.UserId = HttpContext.Session.GetString("uid");

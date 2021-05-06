@@ -12,13 +12,13 @@
     </span>
 
     <div class="wrap-input3">
-        <span class="placeholderEx">آیا سیگار یا مواد مخدر دیگر استفاده میکنید یا خواهید کرد؟</span>
+        <span class="placeholderEx">آیا سیگار یا مواد مخدر استفاده میکنید یا می‌کردید؟</span>
         <input asp-for="tblMedicalRecord.IsAddict" onclick="$('#isAddict').toggle();$('#nextQuestions').toggle();">
     </div>
     <div id="isAddict" style="display:none">
         <div class="wrap-input3">
             <span asp-validation-for="tblMedicalRecord.ProblemDes"></span>
-            <textarea asp-for="tblMedicalRecord.ProblemDes" class="input3" placeholder="مواد مخدری که استفاده میکنید را بنویسید"></textarea>
+            <textarea asp-for="tblMedicalRecord.ProblemDes" class="input3" placeholder="نوع سیگار یا ماده مخدر"></textarea>
             <span class="focus-input3"></span>
         </div>
 

@@ -15,15 +15,19 @@
         <br />
         مرحله ثبت سوابق شغلی
     </span>
-    <span>سوابق شغلی اضافه شده:</span>
-    <ul class="list-group">
-        @foreach (var item in Model.workExperiencesList)
-        {
-            <li class="list-group-item">
-                @item.FldCompanyName
-            </li>
-        }
-    </ul>
+
+    @if (Model.workExperiencesList.Any())
+    {
+        <span>سوابق شغلی اضافه شده:</span>
+        <ul class="list-group">
+            @foreach (var item in Model.workExperiencesList)
+            {
+                <li class="list-group-item">
+                    @item.FldCompanyName
+                </li>
+            }
+        </ul>
+    }
 
     <div class="container-contact3-form-btn">
         <a class="contact3-form-btn" asp-page="AddExperienceField">افزودن جدید</a>

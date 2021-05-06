@@ -31,8 +31,6 @@ namespace NewEmploymentSystem.Pages.Level5
             {
                 return RedirectToPage("../Index");
             }
-            string SkillTitle = HttpContext.Session.GetString("SkillTitle");
-            ViewData["SkillId"] = new SelectList(_db.TblSkills.Where(a=>a.SkillTitle.Replace("ي", "ی").Replace("ك", "ک").Contains(SkillTitle)), "Id", "SkillTitle");
 
             return Page();
         }
@@ -41,8 +39,6 @@ namespace NewEmploymentSystem.Pages.Level5
         {
             if (!ModelState.IsValid)
             {
-                string SkillTitle = HttpContext.Session.GetString("SkillTitle");
-                ViewData["SkillId"] = new SelectList(_db.TblSkills.Where(a => a.SkillTitle.Replace("ي", "ی").Replace("ك", "ک").Contains(SkillTitle)), "Id", "SkillTitle");
                 return Page();
             }
 

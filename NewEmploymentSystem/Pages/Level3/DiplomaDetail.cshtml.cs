@@ -57,7 +57,7 @@ namespace NewEmploymentSystem.Pages.Level3
             {
                 ViewData["EducationId"] = new SelectList(_db.PayEducations.Where(a => a.EducationName.Contains("علوم انساني")), "EducationId", "EducationName");
             }
-            if (ReshtehDiplom.Equals("فنی و حرفه ای"))
+            if (ReshtehDiplom.Equals("فنی و حرفه ای") || ReshtehDiplom.Equals("کار و دانش") || ReshtehDiplom.Equals("علوم معارف اسلامی") || ReshtehDiplom.Equals("سایر"))
             {
                 ViewData["fanni"] = true;
             }

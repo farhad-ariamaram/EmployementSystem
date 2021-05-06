@@ -15,7 +15,7 @@
 
     <div class="wrap-input3">
         <span asp-validation-for="postal.postcode"></span>
-        <input type="number" asp-for="postal.postcode" class="input3" placeholder="کد پستی">
+        <input oninput="javascript: if (this.value.length > 10) this.value = this.value.slice(0, 10);" type="number" asp-for="postal.postcode" class="input3" placeholder="کد پستی">
         <span class="focus-input3"></span>
     </div>
 

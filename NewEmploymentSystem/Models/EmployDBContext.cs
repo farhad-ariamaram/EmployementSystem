@@ -54,7 +54,8 @@ namespace NewEmploymentSystem.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("server=.;database=EmployDB;User Id=sa;Password=1;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=.;Database=EmployDB;Trusted_Connection=True;");
             }
         }
 
@@ -531,6 +532,10 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.Explanation).HasMaxLength(1000);
 
+                entity.Property(e => e.LicenseNo).HasMaxLength(50);
+
+                entity.Property(e => e.LicenseReference).HasMaxLength(50);
+
                 entity.Property(e => e.Title).HasMaxLength(50);
 
                 entity.Property(e => e.UserId)
@@ -749,6 +754,14 @@ namespace NewEmploymentSystem.Models
                 entity.Property(e => e.FldWorkTime)
                     .HasMaxLength(100)
                     .HasColumnName("Fld_WorkTime");
+
+                entity.Property(e => e.FldWorkTimeFrom)
+                    .HasMaxLength(50)
+                    .HasColumnName("Fld_WorkTimeFrom");
+
+                entity.Property(e => e.FldWorkTimeTo)
+                    .HasMaxLength(50)
+                    .HasColumnName("Fld_WorkTimeTo");
 
                 entity.Property(e => e.InsuranceNo).HasMaxLength(50);
 

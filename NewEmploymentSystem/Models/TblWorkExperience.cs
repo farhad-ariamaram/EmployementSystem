@@ -37,6 +37,8 @@ namespace NewEmploymentSystem.Models
         public string InsuranceNo { get; set; }
         public string WhyWantChangeJob { get; set; }
         public string PreviousJobAchievements { get; set; }
+        public string FldWorkTimeFrom { get; set; }
+        public string FldWorkTimeTo { get; set; }
 
         public virtual TblLeaveJob FldLeaveJob { get; set; }
         public virtual TblJobTamin FldTaminJob { get; set; }

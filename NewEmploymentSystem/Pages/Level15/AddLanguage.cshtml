@@ -4,92 +4,131 @@
     ViewData["Title"] = "مرحله ثبت مهارت زبان های خارجی";
 }
 
-    <form name="myForm" onsubmit="return validateForm()" method="post" class="contact3-form">
+    <form method="post" class="contact3-form">
         <span class="contact3-form-title">
             <i class="fa fa-2x fa-language"></i>
             <br />
             مرحله ثبت مهارت زبان های خارجی
         </span>
 
-        <div class="wrap-input3 input3-select">
-            <div>
-                <span class="placeholderEx">زبان را انتخاب کنید</span>
-                <select asp-for="tblUserLanguage.LanguageTypeId" asp-items="ViewBag.LanguageTypeId" class="selection-2"></select>
+        @if (Model.listUserLanguages.Any())
+        {
+            <div class="wrap-input3 input3-select">
+                <div>
+                    <span class="placeholderEx">زبان را انتخاب کنید</span>
+                    <select asp-for="tblUserLanguage.LanguageTypeId" asp-items="ViewBag.LanguageTypeId" class="selection-2"></select>
+                </div>
             </div>
-        </div>
 
-        <div class="wrap-input3">
-            <span class="placeholderEx">سطح مهارت خواندن</span>
-            <select name="ReadingLevel">
-                <option value="1">سطح 1</option>
-                <option value="2">سطح 2</option>
-                <option value="3">سطح 3</option>
-                <option value="4">سطح 4</option>
-                <option value="5">سطح 5</option>
-                <option value="6">سطح 6</option>
-                <option value="7">سطح 7</option>
-            </select>
-            <span class="focus-input3"></span>
-        </div>
+            <div class="wrap-input3">
+                <span class="placeholderEx">زبان مادری</span>
+                <input asp-for="tblUserLanguage.IsNative" />
+            </div>
 
-        <div class="wrap-input3">
-            <span class="placeholderEx">سطح مهارت نوشتن</span>
-            <select name="WritingLevel">
-                <option value="1">سطح 1</option>
-                <option value="2">سطح 2</option>
-                <option value="3">سطح 3</option>
-                <option value="4">سطح 4</option>
-                <option value="5">سطح 5</option>
-                <option value="6">سطح 6</option>
-                <option value="7">سطح 7</option>
-            </select>
-            <span class="focus-input3"></span>
-        </div>
+            <div class="wrap-input3">
+                <span class="placeholderEx">سطح مهارت خواندن</span>
+                <select name="ReadingLevel">
+                    <option value="1">بسیار عالی</option>
+                    <option value="2">عالی</option>
+                    <option value="3">بسیار خوب</option>
+                    <option value="4">خوب</option>
+                    <option value="5">متوسط</option>
+                    <option value="6">ضعیف</option>
+                    <option value="7">بسیار ضعیف</option>
+                </select>
+                <span class="focus-input3"></span>
+            </div>
 
-        <div class="wrap-input3">
-            <span class="placeholderEx">سطح مهارت گفتاری</span>
-            <select name="SpeakingLevel">
-                <option value="1">سطح 1</option>
-                <option value="2">سطح 2</option>
-                <option value="3">سطح 3</option>
-                <option value="4">سطح 4</option>
-                <option value="5">سطح 5</option>
-                <option value="6">سطح 6</option>
-                <option value="7">سطح 7</option>
-            </select>
-            <span class="focus-input3"></span>
-        </div>
+            <div class="wrap-input3">
+                <span class="placeholderEx">سطح مهارت نوشتن</span>
+                <select name="WritingLevel">
+                    <option value="1">بسیار عالی</option>
+                    <option value="2">عالی</option>
+                    <option value="3">بسیار خوب</option>
+                    <option value="4">خوب</option>
+                    <option value="5">متوسط</option>
+                    <option value="6">ضعیف</option>
+                    <option value="7">بسیار ضعیف</option>
+                </select>
+                <span class="focus-input3"></span>
+            </div>
 
-        <div class="wrap-input3">
-            <span class="placeholderEx">سطح مهارت شنیداری</span>
-            <select name="ListeningLevel">
-                <option value="1">سطح 1</option>
-                <option value="2">سطح 2</option>
-                <option value="3">سطح 3</option>
-                <option value="4">سطح 4</option>
-                <option value="5">سطح 5</option>
-                <option value="6">سطح 6</option>
-                <option value="7">سطح 7</option>
-            </select>
-            <span class="focus-input3"></span>
-        </div>
+            <div class="wrap-input3">
+                <span class="placeholderEx">سطح مهارت گفتاری</span>
+                <select name="SpeakingLevel">
+                    <option value="1">بسیار عالی</option>
+                    <option value="2">عالی</option>
+                    <option value="3">بسیار خوب</option>
+                    <option value="4">خوب</option>
+                    <option value="5">متوسط</option>
+                    <option value="6">ضعیف</option>
+                    <option value="7">بسیار ضعیف</option>
+                </select>
+                <span class="focus-input3"></span>
+            </div>
 
-        <div class="textwhite">
-            <span class="placeholderEx">توضیحات بیشتر</span>
-            <input id="moredescheckbox" type="checkbox" onchange="$('#moredes').toggle()" />
-        </div>
-        <br />
+            <div class="wrap-input3">
+                <span class="placeholderEx">سطح مهارت شنیداری</span>
+                <select name="ListeningLevel">
+                    <option value="1">بسیار عالی</option>
+                    <option value="2">عالی</option>
+                    <option value="3">بسیار خوب</option>
+                    <option value="4">خوب</option>
+                    <option value="5">متوسط</option>
+                    <option value="6">ضعیف</option>
+                    <option value="7">بسیار ضعیف</option>
+                </select>
+                <span class="focus-input3"></span>
+            </div>
 
-        <div id="moredes" class="wrap-input3" style="display:none">
-            <span asp-validation-for="tblUserLanguage.Description"></span>
-            <textarea class="input3" asp-for="tblUserLanguage.Description" placeholder="توضیحات"></textarea>
-            <span class="focus-input3"></span>
-        </div>
+            <div class="textwhite">
+                <span class="placeholderEx">توضیحات بیشتر</span>
+                <input id="moredescheckbox" type="checkbox" onchange="$('#moredes').toggle()" />
+            </div>
+            <br />
 
-        <div class="container-contact3-form-btn">
-            <button type="submit" class="contact3-form-btn">
-                ثبت
-            </button>
-        </div>
+            <div id="moredes" class="wrap-input3" style="display:none">
+                <span asp-validation-for="tblUserLanguage.Description"></span>
+                <textarea class="input3" asp-for="tblUserLanguage.Description" placeholder="توضیحات"></textarea>
+                <span class="focus-input3"></span>
+            </div>
+
+            <div class="container-contact3-form-btn">
+                <button type="submit" class="contact3-form-btn">
+                    ثبت
+                </button>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">در این مرحله ابتدا زبان مادری خود که اکثرا به آن زبان صحبت میکنید را وارد کنید</div>
+            
+            <input type="hidden" asp-for="tblUserLanguage.IsNative" value="true" />
+            <div class="wrap-input3 input3-select">
+                <div>
+                    <span class="placeholderEx">زبان را انتخاب کنید</span>
+                    <select asp-for="tblUserLanguage.LanguageTypeId" asp-items="ViewBag.LanguageTypeId" class="selection-2"></select>
+                </div>
+            </div>
+
+            <div class="textwhite">
+                <span class="placeholderEx">توضیحات بیشتر</span>
+                <input id="moredescheckbox" type="checkbox" onchange="$('#moredes').toggle()" />
+            </div>
+            <br />
+
+            <div id="moredes" class="wrap-input3" style="display:none">
+                <span asp-validation-for="tblUserLanguage.Description"></span>
+                <textarea class="input3" asp-for="tblUserLanguage.Description" placeholder="توضیحات"></textarea>
+                <span class="focus-input3"></span>
+            </div>
+
+            <div class="container-contact3-form-btn">
+                <button type="submit" class="contact3-form-btn">
+                    ثبت
+                </button>
+            </div>
+        }
+
 
     </form>

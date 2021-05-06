@@ -40,6 +40,11 @@ namespace NewEmploymentSystem.Pages.Level15
                 HttpContext.Session.SetString("EnterLevel15", DateTime.Now.ToString());
             }
 
+            if (!tblUserLanguage.Any())
+            {
+                return RedirectToPage("AddLanguage");
+            }
+
             return Page();
         }
 

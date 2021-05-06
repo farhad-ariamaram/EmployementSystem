@@ -14,6 +14,8 @@ namespace NewEmploymentSystem.Models
         public DateTime? Date { get; set; }
         public string Description { get; set; }
         public string UserId { get; set; }
+        public string LicenseNo { get; set; }
+        public string LicenseReference { get; set; }
 
         public virtual TblCreativityType CreativityType { get; set; }
         public virtual TblUser User { get; set; }

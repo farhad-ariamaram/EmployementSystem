@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using NewEmploymentSystem.Models;
 
 namespace NewEmploymentSystem.Pages.Level15
@@ -22,6 +23,8 @@ namespace NewEmploymentSystem.Pages.Level15
         [BindProperty]
         public TblUserLanguage tblUserLanguage { get; set; }
 
+        public IEnumerable<TblUserLanguage> listUserLanguages { get; set; }
+
         public IActionResult OnGet()
         {
             string uid = HttpContext.Session.GetString("uid");
@@ -31,7 +34,9 @@ namespace NewEmploymentSystem.Pages.Level15
                 return RedirectToPage("../Index");
             }
 
-            ViewData["LanguageTypeId"] = new SelectList(_db.TblLanguageTypes, "Id", "LanguageType");
+            listUserLanguages = _db.TblUserLanguages.Where(a => a.UserId.Equals(uid));
+
+            ViewData["LanguageTypeId"] = new SelectList(_db.TblLanguageTypes.Where(p => !(listUserLanguages.Select(a => a.LanguageTypeId)).Contains(p.Id)), "Id", "LanguageType");
 
             return Page();
         }
@@ -40,15 +45,20 @@ namespace NewEmploymentSystem.Pages.Level15
         {
             if (!ModelState.IsValid)
             {
-                ViewData["LanguageTypeId"] = new SelectList(_db.TblLanguageTypes, "Id", "LanguageType");
+                string uid = HttpContext.Session.GetString("uid");
+                listUserLanguages = _db.TblUserLanguages.Where(a => a.UserId.Equals(uid));
+                ViewData["LanguageTypeId"] = new SelectList(_db.TblLanguageTypes.Where(p => !(listUserLanguages.Select(a => a.LanguageTypeId)).Contains(p.Id)), "Id", "LanguageType");
                 return Page();
             }
 
             tblUserLanguage.UserId = HttpContext.Session.GetString("uid");
-            tblUserLanguage.ReadingLevel = int.Parse(Request.Form["ReadingLevel"].ToString());
-            tblUserLanguage.ListeningLevel = int.Parse(Request.Form["ListeningLevel"].ToString());
-            tblUserLanguage.SpeakingLevel = int.Parse(Request.Form["SpeakingLevel"].ToString());
-            tblUserLanguage.WritingLevel = int.Parse(Request.Form["WritingLevel"].ToString());
+            if (!string.IsNullOrEmpty(Request.Form["ReadingLevel"].ToString()))
+            {
+                tblUserLanguage.ReadingLevel = int.Parse(Request.Form["ReadingLevel"].ToString());
+                tblUserLanguage.ListeningLevel = int.Parse(Request.Form["ListeningLevel"].ToString());
+                tblUserLanguage.SpeakingLevel = int.Parse(Request.Form["SpeakingLevel"].ToString());
+                tblUserLanguage.WritingLevel = int.Parse(Request.Form["WritingLevel"].ToString());
+            }
             _db.TblUserLanguages.Add(tblUserLanguage);
             _db.SaveChanges();
             return RedirectToPage("Index");

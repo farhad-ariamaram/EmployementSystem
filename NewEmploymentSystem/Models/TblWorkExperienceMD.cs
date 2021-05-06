@@ -56,6 +56,16 @@ namespace NewEmploymentSystem.Models
 
         [StringLength(500, ErrorMessage = "طول این فیلد حداکثر 500 کاراکتر می‌باشد")]
         public string Description { get; set; }
+
+        [RegularExpression("([0-9]+)", ErrorMessage = "فرمت وارد شده ساعت شروع کار صحیح نمی‌باشد")]
+        [StringLength(2, MinimumLength = 1, ErrorMessage = "طول ساعت شروع کار حداقل 1 و حداکثر 2 کاراکتر می‌باشد")]
+        [Range(1, 24, ErrorMessage = "یک عدد بین 1 تا 24 وارد کنید")]
+        public string FldWorkTimeFrom { get; set; }
+
+        [RegularExpression("([0-9]+)", ErrorMessage = "فرمت وارد شده ساعت پایان کار صحیح نمی‌باشد")]
+        [StringLength(2, MinimumLength = 1, ErrorMessage = "طول ساعت پایان کار حداقل 1 و حداکثر 2 کاراکتر می‌باشد")]
+        [Range(1, 24, ErrorMessage = "یک عدد بین 1 تا 24 وارد کنید")]
+        public string FldWorkTimeTo { get; set; }
     }
 
 

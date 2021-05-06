@@ -124,6 +124,18 @@
         </div>
 
         <div class="wrap-input3 ">
+            <span asp-validation-for="tblWorkExperience.FldWorkTimeFrom"></span>
+            <input type="number" oninput="javascript: if (this.value.length > 2) this.value = this.value.slice(0, 2);" asp-for="tblWorkExperience.FldWorkTimeFrom" class="input3" placeholder="ساعت شروع کار">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3 ">
+            <span asp-validation-for="tblWorkExperience.FldWorkTimeTo"></span>
+            <input type="number" oninput="javascript: if (this.value.length > 2) this.value = this.value.slice(0, 2);" asp-for="tblWorkExperience.FldWorkTimeTo" class="input3" placeholder="ساعت پایان کار">
+            <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3 ">
             <span asp-validation-for="tblWorkExperience.FldWorkDay"></span>
             <input type="number" asp-for="tblWorkExperience.FldWorkDay" class="input3" placeholder="تعداد روز های کارکرد">
             <span class="focus-input3"></span>

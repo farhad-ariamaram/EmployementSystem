@@ -33,19 +33,19 @@
 <div class="container-contact3-form-btn">
     @if (Model.tblMedicalRecords.Any())
     {
-        <a class="contact3-form-btn" asp-page="AddMedicalRecord">افزودن سابقه پزشکی</a>
+        <a class="contact3-form-btn" asp-page="AddMedicalRecord">افزودن سابقه پزشکی جدید</a>
         <div class="container-contact3-form-btn">
             <button type="submit" class="contact3-form-btn">
-                سابقه پزشکی ندارم
+                سابقه پزشکی دیگری ندارم
             </button>
         </div>
     }
     else
     {
-        <a class="contact3-form-btn" asp-page="AddMedicalRecord">افزودن سابقه پزشکی جدید</a>
+        <a class="contact3-form-btn" asp-page="AddMedicalRecord">افزودن سابقه پزشکی</a>
         <div class="container-contact3-form-btn">
             <button type="submit" class="contact3-form-btn">
-                سابقه پزشکی دیگری ندارم
+                سابقه پزشکی ندارم
             </button>
         </div>
     }

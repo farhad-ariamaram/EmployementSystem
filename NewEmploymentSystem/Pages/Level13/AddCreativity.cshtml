@@ -36,6 +36,21 @@
         <input type="text" name="GetDate" class="pdate" id="pcal1" readonly>
     </div>
 
+    <div class="textwhite"><input type="checkbox" onchange="$('#licensesection').toggle();" />گواهی دارید؟</div><br />
+    <br />
+    <div style="display:none" id="licensesection">
+        <div class="wrap-input3">
+            <span asp-validation-for="tblUserCreativity.LicenseReference"></span>
+            <input asp-for="tblUserCreativity.LicenseReference" class="input3" placeholder="نام مرجع گواهی دهنده">
+            <span class="focus-input3"></span>
+        </div>
+        <div class="wrap-input3">
+            <span asp-validation-for="tblUserCreativity.LicenseNo"></span>
+            <input asp-for="tblUserCreativity.LicenseNo" class="input3" placeholder="شماره گواهی">
+            <span class="focus-input3"></span>
+        </div>
+    </div>
+
     <div class="textwhite">
         <span class="placeholderEx">توضیحات بیشتر</span>
         <input id="moredescheckbox" type="checkbox" onchange="$('#moredes').toggle()" />

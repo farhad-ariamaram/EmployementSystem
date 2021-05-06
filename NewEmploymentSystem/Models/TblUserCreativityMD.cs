@@ -19,6 +19,12 @@ namespace NewEmploymentSystem.Models
 
         [StringLength(1000, ErrorMessage = "طول این فیلد حداکثر 1000 کاراکتر می‌باشد")]
         public string Description { get; set; }
+
+        [StringLength(50, ErrorMessage = "طول این فیلد حداکثر 50 کاراکتر می‌باشد")]
+        public string LicenseNo { get; set; }
+
+        [StringLength(50, ErrorMessage = "طول این فیلد حداکثر 50 کاراکتر می‌باشد")]
+        public string LicenseReference { get; set; }
     }
 
 

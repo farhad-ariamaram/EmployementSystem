@@ -15,6 +15,7 @@ namespace NewEmploymentSystem.Models
         public int? ListeningLevel { get; set; }
         public int? SpeakingLevel { get; set; }
         public string Description { get; set; }
+        public bool IsNative { get; set; }
 
         public virtual TblLanguageType LanguageType { get; set; }
         public virtual TblUser User { get; set; }

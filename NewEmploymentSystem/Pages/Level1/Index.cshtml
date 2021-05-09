@@ -64,14 +64,14 @@
     <div class="wrap-input3" id="ChildrenNo">
         <span class="placeholderEx">تعداد فرزندان</span>
         <span asp-validation-for="primaryInformation.ChildrenNo"></span>
-        <input class="input3" asp-for="primaryInformation.ChildrenNo" value="0">
+        <input class="input3" asp-for="primaryInformation.ChildrenNo" id="childnom" value="0" oninput="removefirstzero();">
         <span class="focus-input3"></span>
     </div>
 
     <div class="wrap-input3">
         <span class="placeholderEx">افراد تحت تکفل</span>
         <span asp-validation-for="primaryInformation.Tutelage"></span>
-        <input class="input3" asp-for="primaryInformation.Tutelage" value="0">
+        <input class="input3" asp-for="primaryInformation.Tutelage" id="tnom" value="0" oninput="removefirstzero2();">
         <span class="focus-input3"></span>
     </div>
 
@@ -80,11 +80,23 @@
     <br />
 
     <div class="container-contact3-form-btn">
-        <input id="submittion" type="submit" class="contact3-form-btn" value="ثبت"/>
+        <input id="submittion" type="submit" class="contact3-form-btn" value="ثبت" />
     </div>
 </form>
 
 <script>
+    function removefirstzero() {
+        var value = $("#childnom").val();
+        value = value.replace(/^0+/, '');
+        $("#childnom").val(value);
+    }
+
+    function removefirstzero2() {
+        var value = $("#tnom").val();
+        value = value.replace(/^0+/, '');
+        $("#tnom").val(value);
+    }
+
     document.forms["myForm"]["BirthDate"].value = localStorage.getItem('bd9');
     function validateForm() {
         $("#submittion").disabled = true;

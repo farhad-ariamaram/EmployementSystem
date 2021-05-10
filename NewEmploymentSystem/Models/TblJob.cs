@@ -19,6 +19,7 @@ namespace NewEmploymentSystem.Models
         public string JobTitle { get; set; }
         public bool NeedMan { get; set; }
         public bool NeedWoman { get; set; }
+        public string Description { get; set; }
 
         public virtual ICollection<TblUserJob> TblUserJobs { get; set; }
     }

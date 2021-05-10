@@ -1,7 +1,7 @@
 ﻿@page
 @model NewEmploymentSystem.Pages.Level12.IndexModel
 @{
-    ViewData["Title"] = "مرحله ثبت سوابق عمومی";
+    ViewData["Title"] = "مرحله ثبت سوابق عمومی (کیفری)";
 }
 
 <partial name="_Steps" model="@ViewData["Level"]" />
@@ -10,12 +10,12 @@
     <span class="contact3-form-title">
         <i class="fa fa-2x fa-history"></i>
         <br />
-        مرحله ثبت سوابق عمومی
+        مرحله ثبت سوابق عمومی (کیفری)
     </span>
 
     @if (Model.tblGeneralRecord.Any())
     {
-        <span> سوابق عمومی اضافه شده:</span>
+        <span> سوابق عمومی (کیفری) اضافه شده:</span>
         <ul class="list-group">
             @foreach (var item in Model.tblGeneralRecord)
             {

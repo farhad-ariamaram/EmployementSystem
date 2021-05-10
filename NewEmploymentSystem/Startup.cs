@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NewEmploymentSystem.EmployReqModels;
 using NewEmploymentSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace NewEmploymentSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<EmployDBContext>();
+            services.AddDbContext<EmployeeRequestDBContext>();
             services.AddSession();
             services.AddRazorPages();
         }

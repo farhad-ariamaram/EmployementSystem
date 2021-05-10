@@ -86,5 +86,10 @@ namespace NewEmploymentSystem.Pages.Level6
             _db.SaveChanges();
             return RedirectToPage("Index");
         }
+
+        public async Task<IActionResult> OnGetDesAsync(int id)
+        {
+            return new JsonResult(_db.TblJobs.Find(id).Description);
+        }
     }
 }

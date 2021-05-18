@@ -319,6 +319,7 @@ namespace NewEmploymentSystem.Pages.Level
                             FldEmployeeRequestUserLanguageReadingLevel = item.ReadingLevel,
                             FldEmployeeRequestUserLanguageSpeakingLevel = item.SpeakingLevel,
                             FldEmployeeRequestUserLanguageWritingLevel = item.WritingLevel,
+                            FldEmployeeRequestUserLanguageIsNative = item.IsNative
                         };
                         _db2.TblEmployeeRequestUserLanguages.Add(TblEmployeeRequestUserLanguage);
                     }

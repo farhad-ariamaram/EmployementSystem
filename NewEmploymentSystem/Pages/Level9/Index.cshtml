@@ -6,7 +6,7 @@
 
 <partial name="_Steps" model="@ViewData["Level"]" />
 
-<form class="contact3-form" method="post">
+<form onsubmit="return validateForm()" class="contact3-form" method="post">
     <span class="contact3-form-title">
         <i class="fa fa-2x fa-map-marker"></i>
         <br />
@@ -42,5 +42,18 @@
         $("#postal_postcode").keyup(function () {
             $("#postal_postcode").val(fixNumber($("#postal_postcode").val()));
         });
+    }
+
+    function validateForm() {
+        Swal.fire({
+            html: 'در حال بارگذاری اطلاعات، لطفا منتظر بمانید...',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        return true;
     }
 </script>

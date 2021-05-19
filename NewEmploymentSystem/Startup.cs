@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NewEmploymentSystem.EmployReqModels;
 using NewEmploymentSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -26,7 +25,6 @@ namespace NewEmploymentSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<EmployDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CS2")));
-            services.AddDbContext<EmployeeRequestDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CS")));
             services.AddSession();
             services.AddRazorPages();
         }

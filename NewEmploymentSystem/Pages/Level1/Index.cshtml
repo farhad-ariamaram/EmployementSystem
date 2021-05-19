@@ -84,7 +84,10 @@
     </div>
 </form>
 
+
 <script>
+
+
     function removefirstzero() {
         var value = $("#childnom").val();
         value = value.replace(/^0+/, '');
@@ -99,30 +102,34 @@
 
     document.forms["myForm"]["BirthDate"].value = localStorage.getItem('bd9');
     function validateForm() {
-        $("#submittion").disabled = true;
-        $("#submittion").value = 'در حال ثبت';
-        localStorage.setItem("bd9", document.forms["myForm"]["BirthDate"].value);
-        $("#submittion").prop("disabled", true);
+        Swal.fire({
+            html: 'در حال بارگذاری اطلاعات، لطفا منتظر بمانید...',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+            }
+        });
         var sd = document.forms["myForm"]["BirthDate"].value;
         if (sd == "") {
             $("#pcal1error").css("display", "block");
-            $("#submittion").removeAttr("disabled");
+            swal.close();
             return false;
         } else {
             $("#pcal1error").css("display", "none");
+            localStorage.setItem("bd9", document.forms["myForm"]["BirthDate"].value);
+            if (!NationalCode($("#nationalCodeInput").val())) {
+                $("#nationalCodeerror").css("display", "block");
+                $("html, body").animate({
+                    scrollTop: 0
+                }, 500);
+                swal.close();
+                return false;
+            } else {
+                $("#nationalCodeerror").css("display", "none");
+            }
         }
-
-        if (!NationalCode($("#nationalCodeInput").val())) {
-            $("#nationalCodeerror").css("display", "block");
-            $("html, body").animate({
-                scrollTop: 0
-            }, 500);
-            $("#submittion").removeAttr("disabled");
-            return false;
-        } else {
-            $("#nationalCodeerror").css("display", "none");
-        }
-
+        return true;
     }
 
     //تابع مخفی کردن تعداد فرزندان برای فرد مجرد
@@ -186,8 +193,5 @@
             $("#pcal2error").hide();
         });
     }
-
-
-
 
 </script>

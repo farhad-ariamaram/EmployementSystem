@@ -27,14 +27,26 @@
 
 <script>
     function validateForm() {
+        Swal.fire({
+            html: 'در حال بارگذاری اطلاعات، لطفا منتظر بمانید...',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
         var text = document.forms["myForm"]["KarshenasiReshteh"].value;
         if (text == "" || text.length < 2) {
             $("#pcal1error").css("display", "block");
+            swal.close();
             return false;
         }
         if (!persianRex.text.test(text)) {
             $("#pcal2error").css("display", "block");
+            swal.close();
             return false;
         }
+        return true;
     }
 </script>

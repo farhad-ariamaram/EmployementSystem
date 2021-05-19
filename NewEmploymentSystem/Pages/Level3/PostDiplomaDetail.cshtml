@@ -83,6 +83,15 @@
     document.forms["myForm"]["ExportDate"].value = localStorage.getItem('exd5');
 
     function validateForm() {
+        Swal.fire({
+            html: 'در حال بارگذاری اطلاعات، لطفا منتظر بمانید...',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
         localStorage.setItem("sd5", document.forms["myForm"]["StartDate"].value);
         localStorage.setItem("ed5", document.forms["myForm"]["EndDate"].value);
         localStorage.setItem("exd5", document.forms["myForm"]["ExportDate"].value);
@@ -92,22 +101,27 @@
         var exd = document.forms["myForm"]["ExportDate"].value;
         if (sd == "") {
             $("#pcal1error").css("display", "block");
+            swal.close();
             return false;
         } else {
             $("#pcal1error").css("display", "none");
         }
         if (ed == "") {
             $("#pcal2error").css("display", "block");
+            swal.close();
             return false;
         } else {
             $("#pcal2error").css("display", "none");
         }
         if (exd == "") {
             $("#pcal3error").css("display", "block");
+            swal.close();
             return false;
         } else {
             $("#pcal3error").css("display", "none");
         }
+
+        return true;
     }
 
     function fixNumber(str) {

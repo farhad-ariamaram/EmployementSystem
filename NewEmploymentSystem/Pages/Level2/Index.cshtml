@@ -40,12 +40,23 @@
 <script>
 
     function validateForm() {
+        Swal.fire({
+            html: 'در حال بارگذاری اطلاعات، لطفا منتظر بمانید...',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
         if ($("#pass").val().length < 6) {
             $("#pcal2error").css("display", "block");
+            swal.close();
             return false;
         } else {
             $("#pcal2error").css("display", "none");
         }
+        return true;
     }
 
     function fixNumber(str) {

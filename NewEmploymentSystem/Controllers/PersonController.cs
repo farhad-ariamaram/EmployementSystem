@@ -64,5 +64,31 @@ namespace NewEmploymentSystem.Controllers
             }
             return new JsonResult("NotFound");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> PostPerson(TblJob job)
+        {
+            try
+            {
+                TblJob newJob = new TblJob()
+                {
+                    JobTitle = job.JobTitle,
+                    IsActive = job.IsActive,
+                    StartDate = job.StartDate,
+                    EndDate = job.EndDate,
+                    NeedMan = job.NeedMan,
+                    NeedWoman = job.NeedWoman,
+                    Description = job.Description
+                };
+                await _db.TblJobs.AddAsync(newJob);
+                await _db.SaveChangesAsync();
+
+                return new JsonResult(newJob.Id);
+            }
+            catch (Exception)
+            {
+                return new JsonResult("Error");
+            }
+        }
     }
 }

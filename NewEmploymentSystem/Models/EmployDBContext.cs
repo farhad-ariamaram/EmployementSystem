@@ -54,14 +54,13 @@ namespace NewEmploymentSystem.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=.;Database=EmployDB;Trusted_Connection=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Persian_100_CI_AS");
+            modelBuilder.HasAnnotation("Relational:Collation", "Persian_100_CI_AI");
 
             modelBuilder.Entity<PayDiploma>(entity =>
             {
@@ -80,7 +79,8 @@ namespace NewEmploymentSystem.Models
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .HasColumnName("Diploma_Name");
+                    .HasColumnName("Diploma_Name")
+                    .UseCollation("Persian_100_CI_AS");
             });
 
             modelBuilder.Entity<PayEducation>(entity =>
@@ -98,21 +98,26 @@ namespace NewEmploymentSystem.Models
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("Education_Name")
-                    .HasDefaultValueSql("('')");
+                    .HasDefaultValueSql("('')")
+                    .UseCollation("Persian_100_CI_AS");
             });
 
             modelBuilder.Entity<TblCompilationType>(entity =>
             {
                 entity.ToTable("Tbl_CompilationType");
 
-                entity.Property(e => e.CompilationType).HasMaxLength(50);
+                entity.Property(e => e.CompilationType)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
             });
 
             modelBuilder.Entity<TblCreativityType>(entity =>
             {
                 entity.ToTable("Tbl_CreativityType");
 
-                entity.Property(e => e.CreativityType).HasMaxLength(50);
+                entity.Property(e => e.CreativityType)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
             });
 
             modelBuilder.Entity<TblCustomerDegree>(entity =>
@@ -125,7 +130,8 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.CustomerName)
                     .HasMaxLength(100)
-                    .HasColumnName("Customer_Name");
+                    .HasColumnName("Customer_Name")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.DiplomaId).HasColumnName("Diploma_ID");
 
@@ -133,11 +139,13 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.FldDes)
                     .HasMaxLength(500)
-                    .HasColumnName("Fld_Des");
+                    .HasColumnName("Fld_Des")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldEducationName)
                     .HasMaxLength(100)
-                    .HasColumnName("Fld_EducationName");
+                    .HasColumnName("Fld_EducationName")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldEndDate)
                     .HasColumnType("datetime")
@@ -149,11 +157,13 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.FldExportNo)
                     .HasMaxLength(50)
-                    .HasColumnName("Fld_ExportNO");
+                    .HasColumnName("Fld_ExportNO")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldPoint)
                     .HasMaxLength(5)
-                    .HasColumnName("Fld_Point");
+                    .HasColumnName("Fld_Point")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldStartDate)
                     .HasColumnType("datetime")
@@ -161,15 +171,18 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.FldStudyCity)
                     .HasMaxLength(50)
-                    .HasColumnName("Fld_StudyCity");
+                    .HasColumnName("Fld_StudyCity")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldStudyPlace)
                     .HasMaxLength(50)
-                    .HasColumnName("Fld_StudyPlace");
+                    .HasColumnName("Fld_StudyPlace")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.Diploma)
                     .WithMany(p => p.TblCustomerDegrees)
@@ -191,19 +204,30 @@ namespace NewEmploymentSystem.Models
             {
                 entity.ToTable("Tbl_EmergencyCall");
 
-                entity.Property(e => e.Description).HasMaxLength(1000);
+                entity.Property(e => e.Description)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.FirstName).HasMaxLength(50);
+                entity.Property(e => e.FirstName)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.LastName).HasMaxLength(50);
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.PhoneNo).HasMaxLength(50);
+                entity.Property(e => e.PhoneNo)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Relative).HasMaxLength(50);
+                entity.Property(e => e.Relative)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.TblEmergencyCalls)
@@ -215,15 +239,22 @@ namespace NewEmploymentSystem.Models
             {
                 entity.ToTable("Tbl_GeneralRecord");
 
-                entity.Property(e => e.CriminalDes).HasMaxLength(1000);
+                entity.Property(e => e.CriminalDes)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.CriminalTiltle).HasMaxLength(50);
+                entity.Property(e => e.CriminalTiltle)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Description).HasMaxLength(1000);
+                entity.Property(e => e.Description)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.TblGeneralRecords)
@@ -235,15 +266,19 @@ namespace NewEmploymentSystem.Models
             {
                 entity.ToTable("Tbl_HowFind");
 
-                entity.Property(e => e.AdditionalDes).HasMaxLength(1000);
+                entity.Property(e => e.AdditionalDes)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.HowFindTitle)
                     .HasMaxLength(50)
-                    .HasColumnName("HowFind_Title");
+                    .HasColumnName("HowFind_Title")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.TblHowFinds)
@@ -257,15 +292,19 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.DateTime).HasColumnType("datetime");
 
-                entity.Property(e => e.Ip).HasMaxLength(100);
+                entity.Property(e => e.Ip)
+                    .HasMaxLength(100)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.TblIpLogs)
                     .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Tbl_IpLog_Tbl_User1");
             });
 
@@ -273,11 +312,15 @@ namespace NewEmploymentSystem.Models
             {
                 entity.ToTable("Tbl_Jobs");
 
-                entity.Property(e => e.Description).HasMaxLength(1000);
+                entity.Property(e => e.Description)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
-                entity.Property(e => e.JobTitle).HasMaxLength(100);
+                entity.Property(e => e.JobTitle)
+                    .HasMaxLength(100)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.StartDate).HasColumnType("datetime");
             });
@@ -293,25 +336,30 @@ namespace NewEmploymentSystem.Models
                 entity.Property(e => e.FldTaminJobCode)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .HasColumnName("Fld_TaminJobCode");
+                    .HasColumnName("Fld_TaminJobCode")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldTaminJobName)
                     .IsRequired()
                     .HasMaxLength(200)
-                    .HasColumnName("Fld_TaminJobName");
+                    .HasColumnName("Fld_TaminJobName")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldTaminJobStatus).HasColumnName("Fld_TaminJobStatus");
 
                 entity.Property(e => e.FldTaminJobStatusDate)
                     .HasMaxLength(50)
-                    .HasColumnName("Fld_TaminJobStatusDate");
+                    .HasColumnName("Fld_TaminJobStatusDate")
+                    .UseCollation("Persian_100_CI_AS");
             });
 
             modelBuilder.Entity<TblLanguageType>(entity =>
             {
                 entity.ToTable("Tbl_LanguageType");
 
-                entity.Property(e => e.LanguageType).HasMaxLength(50);
+                entity.Property(e => e.LanguageType)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
             });
 
             modelBuilder.Entity<TblLeaveJob>(entity =>
@@ -327,18 +375,23 @@ namespace NewEmploymentSystem.Models
                 entity.Property(e => e.FldLeaveJobTitle)
                     .IsRequired()
                     .HasMaxLength(200)
-                    .HasColumnName("Fld_LeaveJobTitle");
+                    .HasColumnName("Fld_LeaveJobTitle")
+                    .UseCollation("Persian_100_CI_AS");
             });
 
             modelBuilder.Entity<TblLink>(entity =>
             {
                 entity.ToTable("Tbl_Link");
 
-                entity.Property(e => e.Id).HasMaxLength(50);
+                entity.Property(e => e.Id)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.ExpireDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Phone).HasMaxLength(50);
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
             });
 
             modelBuilder.Entity<TblMedicalRecord>(entity =>
@@ -347,21 +400,29 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.ComplicationsDes)
                     .HasMaxLength(1000)
-                    .IsFixedLength(true);
+                    .IsFixedLength(true)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Description).HasMaxLength(1000);
+                entity.Property(e => e.Description)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Disease).HasMaxLength(50);
+                entity.Property(e => e.Disease)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
-                entity.Property(e => e.ProblemDes).HasMaxLength(1000);
+                entity.Property(e => e.ProblemDes)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.StartDate).HasColumnType("datetime");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.TblMedicalRecords)
@@ -373,14 +434,18 @@ namespace NewEmploymentSystem.Models
             {
                 entity.ToTable("Tbl_Military");
 
-                entity.Property(e => e.MilitaryStatus).HasMaxLength(50);
+                entity.Property(e => e.MilitaryStatus)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
             });
 
             modelBuilder.Entity<TblMilitaryOrganization>(entity =>
             {
                 entity.ToTable("Tbl_MilitaryOrganization");
 
-                entity.Property(e => e.OrganizationName).HasMaxLength(50);
+                entity.Property(e => e.OrganizationName)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
             });
 
             modelBuilder.Entity<TblPageTimeLog>(entity =>
@@ -389,17 +454,21 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.EndTime).HasColumnType("datetime");
 
-                entity.Property(e => e.PageLevel).HasMaxLength(10);
+                entity.Property(e => e.PageLevel)
+                    .HasMaxLength(10)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.StartTime).HasColumnType("datetime");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.TblPageTimeLogs)
                     .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Tbl_PageTimeLog_Tbl_User");
             });
 
@@ -416,25 +485,42 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.BirthDate).HasColumnType("datetime");
 
-                entity.Property(e => e.FirstName).HasMaxLength(50);
+                entity.Property(e => e.FirstName)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Gender).HasMaxLength(20);
+                entity.Property(e => e.Gender)
+                    .HasMaxLength(20)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.LastName).HasMaxLength(50);
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Marital).HasMaxLength(20);
+                entity.Property(e => e.Marital)
+                    .HasMaxLength(20)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.NationalCode).HasMaxLength(20);
+                entity.Property(e => e.NationalCode)
+                    .HasMaxLength(20)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.PhoneNo).HasMaxLength(20);
+                entity.Property(e => e.PhoneNo)
+                    .HasMaxLength(20)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.PostalCode).HasMaxLength(20);
+                entity.Property(e => e.PostalCode)
+                    .HasMaxLength(20)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.TrackNo).HasMaxLength(50);
+                entity.Property(e => e.TrackNo)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.TblPrimaryInformations)
@@ -446,7 +532,9 @@ namespace NewEmploymentSystem.Models
             {
                 entity.ToTable("Tbl_Skills");
 
-                entity.Property(e => e.SkillTitle).HasMaxLength(100);
+                entity.Property(e => e.SkillTitle)
+                    .HasMaxLength(100)
+                    .UseCollation("Persian_100_CI_AS");
             });
 
             modelBuilder.Entity<TblSmsReceived>(entity =>
@@ -455,9 +543,13 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.Property(e => e.Message).HasMaxLength(1000);
+                entity.Property(e => e.Message)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Phone).HasMaxLength(1000);
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
             });
 
             modelBuilder.Entity<TblSmsSent>(entity =>
@@ -466,24 +558,36 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.Property(e => e.Message).HasMaxLength(1000);
+                entity.Property(e => e.Message)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Phone).HasMaxLength(1000);
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
             });
 
             modelBuilder.Entity<TblUser>(entity =>
             {
                 entity.ToTable("Tbl_User");
 
-                entity.Property(e => e.Id).HasMaxLength(50);
+                entity.Property(e => e.Id)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.CurrentLevel).HasMaxLength(20);
+                entity.Property(e => e.CurrentLevel)
+                    .HasMaxLength(20)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.PagesSequenceId).HasColumnName("PagesSequence_Id");
 
-                entity.Property(e => e.Password).HasMaxLength(50);
+                entity.Property(e => e.Password)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Username).HasMaxLength(50);
+                entity.Property(e => e.Username)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.PagesSequence)
                     .WithMany(p => p.TblUsers)
@@ -495,21 +599,30 @@ namespace NewEmploymentSystem.Models
             {
                 entity.ToTable("Tbl_UserCompilation");
 
-                entity.Property(e => e.Author).HasMaxLength(50);
+                entity.Property(e => e.Author)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.CompilationTypeId).HasColumnName("CompilationType_Id");
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.Property(e => e.Description).HasMaxLength(1000);
+                entity.Property(e => e.Description)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Explanation).HasMaxLength(1000);
+                entity.Property(e => e.Explanation)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Title).HasMaxLength(50);
+                entity.Property(e => e.Title)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.CompilationType)
                     .WithMany(p => p.TblUserCompilations)
@@ -530,19 +643,30 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.Property(e => e.Description).HasMaxLength(1000);
+                entity.Property(e => e.Description)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Explanation).HasMaxLength(1000);
+                entity.Property(e => e.Explanation)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.LicenseNo).HasMaxLength(50);
+                entity.Property(e => e.LicenseNo)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.LicenseReference).HasMaxLength(50);
+                entity.Property(e => e.LicenseReference)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Title).HasMaxLength(50);
+                entity.Property(e => e.Title)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.CreativityType)
                     .WithMany(p => p.TblUserCreativities)
@@ -559,21 +683,29 @@ namespace NewEmploymentSystem.Models
             {
                 entity.ToTable("Tbl_UserJob");
 
-                entity.Property(e => e.Description).HasMaxLength(500);
+                entity.Property(e => e.Description)
+                    .HasMaxLength(500)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.JobTitle)
                     .HasMaxLength(50)
-                    .HasColumnName("Job_Title");
+                    .HasColumnName("Job_Title")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.JobsId).HasColumnName("Jobs_Id");
 
-                entity.Property(e => e.RequestMoney).HasMaxLength(50);
+                entity.Property(e => e.RequestMoney)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.WhatKnowAbout).HasMaxLength(1000);
+                entity.Property(e => e.WhatKnowAbout)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.Jobs)
                     .WithMany(p => p.TblUserJobs)
@@ -590,13 +722,16 @@ namespace NewEmploymentSystem.Models
             {
                 entity.ToTable("Tbl_UserLanguage");
 
-                entity.Property(e => e.Description).HasMaxLength(1000);
+                entity.Property(e => e.Description)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.LanguageTypeId).HasColumnName("LanguageType_Id");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.LanguageType)
                     .WithMany(p => p.TblUserLanguages)
@@ -613,13 +748,19 @@ namespace NewEmploymentSystem.Models
             {
                 entity.ToTable("Tbl_UserMilitary");
 
-                entity.Property(e => e.City).HasMaxLength(50);
+                entity.Property(e => e.City)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Description).HasMaxLength(500);
+                entity.Property(e => e.Description)
+                    .HasMaxLength(500)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
-                entity.Property(e => e.ExemptDescription).HasMaxLength(500);
+                entity.Property(e => e.ExemptDescription)
+                    .HasMaxLength(500)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.MilitaryId).HasColumnName("Military_Id");
 
@@ -627,11 +768,14 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.StartDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Unit).HasMaxLength(200);
+                entity.Property(e => e.Unit)
+                    .HasMaxLength(200)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.Military)
                     .WithMany(p => p.TblUserMilitaries)
@@ -655,23 +799,36 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.Property(e => e.Description).HasMaxLength(500);
+                entity.Property(e => e.Description)
+                    .HasMaxLength(500)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.LicenseNo).HasMaxLength(50);
+                entity.Property(e => e.LicenseNo)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.LicenseReference).HasMaxLength(50);
+                entity.Property(e => e.LicenseReference)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.Location).HasMaxLength(50);
+                entity.Property(e => e.Location)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.SkillId).HasColumnName("Skill_Id");
 
-                entity.Property(e => e.SkillTitle).HasMaxLength(100);
+                entity.Property(e => e.SkillTitle)
+                    .HasMaxLength(100)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.SkillType).HasMaxLength(50);
+                entity.Property(e => e.SkillType)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.Skill)
                     .WithMany(p => p.TblUserSkills)
@@ -695,29 +852,37 @@ namespace NewEmploymentSystem.Models
                 entity.Property(e => e.FldAmountOfDailyInsurance)
                     .HasMaxLength(50)
                     .HasColumnName("Fld_AmountOfDailyInsurance")
-                    .HasDefaultValueSql("((0))");
+                    .HasDefaultValueSql("((0))")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldCompanyName)
                     .HasMaxLength(200)
-                    .HasColumnName("Fld_CompanyName");
+                    .HasColumnName("Fld_CompanyName")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldContactInnerNumberOfCompany)
                     .HasMaxLength(10)
-                    .HasColumnName("Fld_ContactInnerNumberOfCompany");
+                    .HasColumnName("Fld_ContactInnerNumberOfCompany")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldContactNumberOfCompany)
                     .HasMaxLength(50)
-                    .HasColumnName("Fld_ContactNumberOfCompany");
+                    .HasColumnName("Fld_ContactNumberOfCompany")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldCustomerName)
                     .HasMaxLength(100)
-                    .HasColumnName("Fld_CustomerName");
+                    .HasColumnName("Fld_CustomerName")
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.FldDescription).HasColumnName("Fld_Description");
+                entity.Property(e => e.FldDescription)
+                    .HasColumnName("Fld_Description")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldEarlySalary)
                     .HasMaxLength(50)
-                    .HasColumnName("Fld_EarlySalary");
+                    .HasColumnName("Fld_EarlySalary")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldEndDate)
                     .HasColumnType("datetime")
@@ -725,19 +890,24 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.FldJobTitle)
                     .HasMaxLength(100)
-                    .HasColumnName("Fld_JobTitle");
+                    .HasColumnName("Fld_JobTitle")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldLateSalary)
                     .HasMaxLength(50)
-                    .HasColumnName("Fld_LateSalary");
+                    .HasColumnName("Fld_LateSalary")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldLeaveJobId).HasColumnName("Fld_LeaveJobID");
 
-                entity.Property(e => e.FldReasonsToLeaveJob).HasColumnName("Fld_ReasonsToLeaveJob");
+                entity.Property(e => e.FldReasonsToLeaveJob)
+                    .HasColumnName("Fld_ReasonsToLeaveJob")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldRelatedPeople)
                     .HasMaxLength(100)
-                    .HasColumnName("Fld_RelatedPeople");
+                    .HasColumnName("Fld_RelatedPeople")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldStartDate)
                     .HasColumnType("datetime")
@@ -747,33 +917,45 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.FldUnitName)
                     .HasMaxLength(100)
-                    .HasColumnName("Fld_UnitName");
+                    .HasColumnName("Fld_UnitName")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldWorkDay)
                     .HasMaxLength(100)
-                    .HasColumnName("Fld_WorkDay");
+                    .HasColumnName("Fld_WorkDay")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldWorkTime)
                     .HasMaxLength(100)
-                    .HasColumnName("Fld_WorkTime");
+                    .HasColumnName("Fld_WorkTime")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldWorkTimeFrom)
                     .HasMaxLength(50)
-                    .HasColumnName("Fld_WorkTimeFrom");
+                    .HasColumnName("Fld_WorkTimeFrom")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldWorkTimeTo)
                     .HasMaxLength(50)
-                    .HasColumnName("Fld_WorkTimeTo");
+                    .HasColumnName("Fld_WorkTimeTo")
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.InsuranceNo).HasMaxLength(50);
+                entity.Property(e => e.InsuranceNo)
+                    .HasMaxLength(50)
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.PreviousJobAchievements).HasMaxLength(1000);
+                entity.Property(e => e.PreviousJobAchievements)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.UserId)
                     .HasMaxLength(50)
-                    .HasColumnName("User_Id");
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
 
-                entity.Property(e => e.WhyWantChangeJob).HasMaxLength(1000);
+                entity.Property(e => e.WhyWantChangeJob)
+                    .HasMaxLength(1000)
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.HasOne(d => d.FldLeaveJob)
                     .WithMany(p => p.TblWorkExperiences)
@@ -799,7 +981,9 @@ namespace NewEmploymentSystem.Models
 
                 entity.Property(e => e.FldWorkExperienceLeaveJobDtlId).HasColumnName("Fld_WorkExperienceLeaveJobDtlID");
 
-                entity.Property(e => e.FldLeaveJob).HasColumnName("Fld_LeaveJob");
+                entity.Property(e => e.FldLeaveJob)
+                    .HasColumnName("Fld_LeaveJob")
+                    .UseCollation("Persian_100_CI_AS");
 
                 entity.Property(e => e.FldLeaveJobId).HasColumnName("Fld_LeaveJobID");
 

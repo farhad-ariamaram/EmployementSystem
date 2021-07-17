@@ -31,6 +31,7 @@ namespace NewEmploymentSystem.Models
         public string Password { get; set; }
         public string CurrentLevel { get; set; }
         public long? PagesSequenceId { get; set; }
+        public bool IsTransfered { get; set; }
 
         public virtual TblPagesSequence PagesSequence { get; set; }
         public virtual ICollection<TblCustomerDegree> TblCustomerDegrees { get; set; }

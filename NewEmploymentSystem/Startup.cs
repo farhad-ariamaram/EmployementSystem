@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NewEmploymentSystem.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace NewEmploymentSystem
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-        } 
+        }
 
         public IConfiguration Configuration { get; }
 
@@ -25,6 +26,10 @@ namespace NewEmploymentSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<EmployDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CS2")));
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
             services.AddSession();
             services.AddRazorPages();
         }
@@ -51,6 +56,7 @@ namespace NewEmploymentSystem
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
         }

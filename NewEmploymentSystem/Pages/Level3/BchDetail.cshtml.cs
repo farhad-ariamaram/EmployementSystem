@@ -62,9 +62,9 @@ namespace NewEmploymentSystem.Pages.Level3
             string[] startDate = Request.Form["StartDate"].ToString().Split("/");
             DateTime sd = new DateTime(int.Parse(startDate[0]), int.Parse(startDate[1]), int.Parse(startDate[2]), pc);
             string[] endDate = Request.Form["EndDate"].ToString().Split("/");
-            DateTime ed = new DateTime(int.Parse(startDate[0]), int.Parse(startDate[1]), int.Parse(startDate[2]), pc);
+            DateTime ed = new DateTime(int.Parse(endDate[0]), int.Parse(endDate[1]), int.Parse(endDate[2]), pc);
             string[] exportDate = Request.Form["ExportDate"].ToString().Split("/");
-            DateTime exd = new DateTime(int.Parse(startDate[0]), int.Parse(startDate[1]), int.Parse(startDate[2]), pc);
+            DateTime exd = new DateTime(int.Parse(exportDate[0]), int.Parse(exportDate[1]), int.Parse(exportDate[2]), pc);
 
             tblCustomerDegree.FldStartDate = sd;
             tblCustomerDegree.FldEndDate = ed;

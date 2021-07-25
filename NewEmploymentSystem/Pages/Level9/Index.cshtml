@@ -1,12 +1,12 @@
 ﻿@page
 @model NewEmploymentSystem.Pages.Level9.IndexModel
 @{
-    ViewData["Title"] = "ثبت کد پستی و دریافت کد پیگیری";
+    ViewData["Title"] = "ثبت کد پستی";
 }
 
 <partial name="_Steps" model="@ViewData["Level"]" />
 
-<form onsubmit="return validateForm()" class="contact3-form" method="post">
+<form class="contact3-form" method="post">
     <span class="contact3-form-title">
         <i class="fa fa-2x fa-map-marker"></i>
         <br />
@@ -44,16 +44,5 @@
         });
     }
 
-    function validateForm() {
-        Swal.fire({
-            html: 'در حال بارگذاری اطلاعات، لطفا منتظر بمانید...',
-            allowOutsideClick: false,
-            showConfirmButton: false,
-            onBeforeOpen: () => {
-                Swal.showLoading();
-            }
-        });
 
-        return true;
-    }
 </script>

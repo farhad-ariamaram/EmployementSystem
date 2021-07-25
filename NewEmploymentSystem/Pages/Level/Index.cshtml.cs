@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,13 @@ namespace NewEmploymentSystem.Pages.Level
 
             //get user track id for display
             Trackcode = _db.TblPrimaryInformations.Where(a => a.UserId.Equals(uid)).FirstOrDefault().TrackNo;
+
+            if (Trackcode == null)
+            {
+               
+                Trackcode = "fd125d9";
+                
+            }
 
             //بروزرسانی رکورد سیستم جاری در صورت بهبود
             var q = (from a in _db.TblPageTimeLogs

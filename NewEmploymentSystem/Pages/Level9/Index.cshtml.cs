@@ -67,6 +67,7 @@ namespace NewEmploymentSystem.Pages.Level9
 
             //set user postal code 
             _db.TblPrimaryInformations.Where(a=> a.UserId.Equals(uid)).FirstOrDefault().PostalCode = postal.postcode;
+            _db.TblPrimaryInformations.Where(a=> a.UserId.Equals(uid)).FirstOrDefault().Address = postal.address;
 
             //generate track id and set for user
             string key = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 6);
@@ -99,5 +100,8 @@ namespace NewEmploymentSystem.Pages.Level9
         [StringLength(10, MinimumLength = 10, ErrorMessage = "طول این فیلد باید 10 کاراکتر ‌باشد")]
         [RegularExpression("([0-9]+)", ErrorMessage = "فرمت وارد شده صحیح نمی‌باشد")]
         public string postcode { get; set; }
+
+        [Required(ErrorMessage = "این فیلد اجباری است")]
+        public string address { get; set; }
     }
 }

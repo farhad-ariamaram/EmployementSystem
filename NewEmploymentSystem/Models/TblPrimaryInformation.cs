@@ -20,6 +20,7 @@ namespace NewEmploymentSystem.Models
         public int? Tutelage { get; set; }
         public string PostalCode { get; set; }
         public string TrackNo { get; set; }
+        public string Address { get; set; }
 
         public virtual TblUser User { get; set; }
     }

@@ -10,12 +10,18 @@
     <span class="contact3-form-title">
         <i class="fa fa-2x fa-map-marker"></i>
         <br />
-        ثبت کد پستی
+        ثبت کد پستی و آدرس
     </span>
 
     <div class="wrap-input3">
         <span asp-validation-for="postal.postcode"></span>
         <input oninput="javascript: if (this.value.length > 10) this.value = this.value.slice(0, 10);" type="number" asp-for="postal.postcode" class="input3" placeholder="کد پستی">
+        <span class="focus-input3"></span>
+    </div>
+
+    <div class="wrap-input3">
+        <span asp-validation-for="postal.address"></span>
+        <textarea asp-for="postal.address" class="input3" placeholder="آدرس"></textarea>
         <span class="focus-input3"></span>
     </div>
 

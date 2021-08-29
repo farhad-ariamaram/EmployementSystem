@@ -39,6 +39,7 @@ namespace NewEmploymentSystem.Models
         public string PreviousJobAchievements { get; set; }
         public string FldWorkTimeFrom { get; set; }
         public string FldWorkTimeTo { get; set; }
+        public string FieldOfWork { get; set; }
 
         public virtual TblLeaveJob FldLeaveJob { get; set; }
         public virtual TblJobTamin FldTaminJob { get; set; }

@@ -47,6 +47,7 @@ namespace NewEmploymentSystem.Models
         public virtual DbSet<TblUserLanguage> TblUserLanguages { get; set; }
         public virtual DbSet<TblUserMilitary> TblUserMilitaries { get; set; }
         public virtual DbSet<TblUserSkill> TblUserSkills { get; set; }
+        public virtual DbSet<TblUserSuggestion> TblUserSuggestions { get; set; }
         public virtual DbSet<TblWorkExperience> TblWorkExperiences { get; set; }
         public virtual DbSet<TblWorkExperienceLeaveJobDtl> TblWorkExperienceLeaveJobDtls { get; set; }
 
@@ -54,6 +55,7 @@ namespace NewEmploymentSystem.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=.;Database=EmployDB;Trusted_Connection=True;");
             }
         }
@@ -483,6 +485,8 @@ namespace NewEmploymentSystem.Models
             {
                 entity.ToTable("Tbl_PrimaryInformation");
 
+                entity.Property(e => e.Address).HasMaxLength(1000);
+
                 entity.Property(e => e.BirthDate).HasColumnType("datetime");
 
                 entity.Property(e => e.FirstName)
@@ -841,6 +845,23 @@ namespace NewEmploymentSystem.Models
                     .HasConstraintName("FK_Tbl_UserSkill_Tbl_User");
             });
 
+            modelBuilder.Entity<TblUserSuggestion>(entity =>
+            {
+                entity.ToTable("Tbl_UserSuggestion");
+
+                entity.Property(e => e.Suggestion).UseCollation("Persian_100_CI_AS");
+
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(50)
+                    .HasColumnName("User_Id")
+                    .UseCollation("Persian_100_CI_AS");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.TblUserSuggestions)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Tbl_UserSuggestion_Tbl_User");
+            });
+
             modelBuilder.Entity<TblWorkExperience>(entity =>
             {
                 entity.HasKey(e => e.FldWorkExperienceId);
@@ -848,6 +869,8 @@ namespace NewEmploymentSystem.Models
                 entity.ToTable("Tbl_WorkExperience");
 
                 entity.Property(e => e.FldWorkExperienceId).HasColumnName("Fld_WorkExperienceID");
+
+                entity.Property(e => e.FieldOfWork).HasMaxLength(150);
 
                 entity.Property(e => e.FldAmountOfDailyInsurance)
                     .HasMaxLength(50)

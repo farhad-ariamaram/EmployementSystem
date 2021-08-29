@@ -13,10 +13,10 @@ namespace NewEmploymentSystem.Utilities
         {
             string NextLevel = null;
             switch (currentLevel)
-            {
+            { 
                 case "Two":
                     NextLevel = "Three";
-                    break;
+                    break; 
                 case "Three":
                     NextLevel = "Four";
                     break;
@@ -55,6 +55,9 @@ namespace NewEmploymentSystem.Utilities
                     break;
                 case "Fifteen":
                     NextLevel = "Sixteen";
+                    break;
+                case "Sixteen":
+                    NextLevel = "Seventeen";
                     break;
                 default:
                     NextLevel = currentLevel;
@@ -112,6 +115,8 @@ namespace NewEmploymentSystem.Utilities
                     return 15;
                 case "Sixteen":
                     return 16;
+                case "Seventeen":
+                    return 17;
                 default:
                     return 0;
             }

@@ -23,6 +23,7 @@ namespace NewEmploymentSystem.Models
             TblUserLanguages = new HashSet<TblUserLanguage>();
             TblUserMilitaries = new HashSet<TblUserMilitary>();
             TblUserSkills = new HashSet<TblUserSkill>();
+            TblUserSuggestions = new HashSet<TblUserSuggestion>();
             TblWorkExperiences = new HashSet<TblWorkExperience>();
         }
 
@@ -48,6 +49,7 @@ namespace NewEmploymentSystem.Models
         public virtual ICollection<TblUserLanguage> TblUserLanguages { get; set; }
         public virtual ICollection<TblUserMilitary> TblUserMilitaries { get; set; }
         public virtual ICollection<TblUserSkill> TblUserSkills { get; set; }
+        public virtual ICollection<TblUserSuggestion> TblUserSuggestions { get; set; }
         public virtual ICollection<TblWorkExperience> TblWorkExperiences { get; set; }
     }
 }

@@ -57,7 +57,7 @@ namespace NewEmploymentSystem.Pages.Level6
 
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) 
             {
                 string uid = HttpContext.Session.GetString("uid");
                 var UserGender = _db.TblPrimaryInformations.Where(a => a.UserId.Equals(uid)).Select(a => a.Gender).FirstOrDefault();

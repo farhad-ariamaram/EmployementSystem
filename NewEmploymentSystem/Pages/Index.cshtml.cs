@@ -229,6 +229,18 @@ namespace NewEmploymentSystem.Pages
                         return RedirectToPage("Level" + number + "/Index");
                     }
 
+                    //اگه "سیکستین" بود یعنی مرحله شانزدهم کامل کرده و الان مرحله هفدهم
+                    if (currentLevel.Equals("Sixteen"))
+                    {
+                        var q = from a in _db.TblPagesSequences
+                                where a.Status == true
+                                select a.Seventeen;
+
+                        var number = q.FirstOrDefault();
+
+                        return RedirectToPage("Level" + number + "/Index");
+                    }
+
                     return RedirectToPage("Level/Index");
                 }
 

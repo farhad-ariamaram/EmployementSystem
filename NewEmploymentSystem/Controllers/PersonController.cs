@@ -40,6 +40,7 @@ namespace NewEmploymentSystem.Controllers
                                 .Include(a => a.TblUserMilitaries)
                                 .Include(a => a.TblUserSkills)
                                 .Include(a => a.TblWorkExperiences)
+                                .Include(a => a.TblUserSuggestions)
                                 .Where(a => a.IsTransfered == false && a.TblPrimaryInformations.FirstOrDefault().TrackNo != null)
                                 .ToListAsync();
 

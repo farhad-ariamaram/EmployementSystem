@@ -66,3 +66,8 @@ TblUser => ذخیره یوزر و پسورد کاربران برای ورود م
 1. هر لینک ثبت نام 24 ساعت فعال است</br>
 2. وقتی کاربر یک رو میفرسته بر اساس شماره تلفنش یک ای دی میگیره و با آن ای دی ثبت نام میکنه</br>
 3. به محض این که مرحله ورود اطلاعات اولیه رو انجام بده یوزر و پسورد میگیره و میتونه بقیه مراحل رو بعدا انجام بده</br>
+
+# screenshots
+![](https://github.com/farhad-ariamaram/EmployementSystem/blob/main/Screenshots/1.png)
+![](https://github.com/farhad-ariamaram/EmployementSystem/blob/main/Screenshots/23.png)
+![](https://github.com/farhad-ariamaram/EmployementSystem/blob/main/Screenshots/25.png)
